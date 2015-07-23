@@ -4,9 +4,9 @@
             "type": "cppcheck",
             "include": "(\\.cpp$)"
         },
-        "h": {
+        "hpp": {
             "type": "cppcheck",
-            "include": "(\\.h$)"
+            "include": "(\\.hpp$)"
         }
     }
 }
