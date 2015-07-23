@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="ratscript2.0" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Option virtualFolders="src/;" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/ratscript2" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="include" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/ratscript2" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="include" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="include/SinglyLinkedList.h" />
+		<Unit filename="include/r_catalog.h" />
+		<Unit filename="include/r_conditional.h" />
+		<Unit filename="include/r_dev.h" />
+		<Unit filename="include/r_doublylinkedlist.h" />
+		<Unit filename="include/r_error.h" />
+		<Unit filename="include/r_evaluator.h">
+			<Option virtualFolder="src/" />
+		</Unit>
+		<Unit filename="include/r_evaluator_postfix.h" />
+		<Unit filename="include/r_lexer.h" />
+		<Unit filename="include/r_math.h" />
+		<Unit filename="include/r_mem.hpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="include/r_parser.h" />
+		<Unit filename="include/r_scope.h" />
+		<Unit filename="include/r_singlylinkedlist.h" />
+		<Unit filename="include/r_sys.h" />
+		<Unit filename="include/r_utils.h" />
+		<Unit filename="include/r_var.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="src/r_catalog.cpp" />
+		<Unit filename="src/r_conditional.cpp" />
+		<Unit filename="src/r_dev.cpp" />
+		<Unit filename="src/r_error.cpp" />
+		<Unit filename="src/r_evaluator.cpp" />
+		<Unit filename="src/r_evaluator_postfix.cpp" />
+		<Unit filename="src/r_lexer.cpp" />
+		<Unit filename="src/r_math.cpp" />
+		<Unit filename="src/r_parser.cpp" />
+		<Unit filename="src/r_scope.cpp" />
+		<Unit filename="src/r_sys.cpp" />
+		<Unit filename="src/r_utils.cpp" />
+		<Unit filename="src/r_var.cpp" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+			<envvars />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
