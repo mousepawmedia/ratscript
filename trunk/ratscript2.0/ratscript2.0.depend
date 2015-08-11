@@ -1071,7 +1071,7 @@
 	"r_utils.h"
 	"r_dev.h"
 
-1437675166 source:/home/michael/MousePaw/ratscript-git/trunk/ratscript2.0/main.cpp
+1440649508 source:/home/michael/MousePaw/ratscript-git/trunk/ratscript2.0/main.cpp
 	<cctype>
 	<iostream>
 	<string>
@@ -1087,16 +1087,17 @@
 	"r_utils.h"
 	"r_mem.hpp"
 
-1437674531 /home/michael/MousePaw/ratscript-git/trunk/ratscript2.0/include/r_catalog.hpp
+1440649004 /home/michael/MousePaw/ratscript-git/trunk/ratscript2.0/include/r_catalog.hpp
 	<algorithm>
 	<iostream>
 	<string>
 	<vector>
 	"r_utils.h"
 	"r_var.hpp"
+	"r_mem.hpp"
 	"SinglyLinkedList.hpp"
 
-1437674354 /home/michael/MousePaw/ratscript-git/trunk/ratscript2.0/include/r_utils.h
+1440388516 /home/michael/MousePaw/ratscript-git/trunk/ratscript2.0/include/r_utils.h
 	<iostream>
 	<string>
 	<sstream>
@@ -1110,7 +1111,7 @@
 	<iostream>
 	<string>
 
-1437673959 /home/michael/MousePaw/ratscript-git/trunk/ratscript2.0/include/r_var.hpp
+1440385438 /home/michael/MousePaw/ratscript-git/trunk/ratscript2.0/include/r_var.hpp
 	<cctype>
 	<ctime>
 	<iostream>
@@ -1119,7 +1120,7 @@
 	<stdexcept>
 	"r_utils.h"
 
-1437675039 /home/michael/MousePaw/ratscript-git/trunk/ratscript2.0/include/SinglyLinkedList.hpp
+1437675038 /home/michael/MousePaw/ratscript-git/trunk/ratscript2.0/include/SinglyLinkedList.hpp
 	<iostream>
 	<stdlib.h>
 	<typeinfo>
@@ -1131,7 +1132,7 @@
 	<string>
 	<sstream>
 
-1437674318 /home/michael/MousePaw/ratscript-git/trunk/ratscript2.0/include/r_scope.hpp
+1440648902 /home/michael/MousePaw/ratscript-git/trunk/ratscript2.0/include/r_scope.hpp
 	<map>
 	<string>
 	"r_catalog.hpp"
@@ -1168,7 +1169,7 @@
 	"r_catalog.hpp"
 	"r_conditional.h"
 
-1437675061 /home/michael/MousePaw/ratscript-git/trunk/ratscript2.0/include/r_evaluator_postfix.hpp
+1437675060 /home/michael/MousePaw/ratscript-git/trunk/ratscript2.0/include/r_evaluator_postfix.hpp
 	<string>
 	<vector>
 	<queue>
@@ -1183,7 +1184,7 @@
 	"r_var.hpp"
 	"r_error.h"
 
-1437674300 /home/michael/MousePaw/ratscript-git/trunk/ratscript2.0/include/r_mem.hpp
+1440647332 /home/michael/MousePaw/ratscript-git/trunk/ratscript2.0/include/r_mem.hpp
 	<bitset>
 	<iostream>
 	<fstream>
@@ -1191,7 +1192,7 @@
 	"r_utils.h"
 	"r_dev.h"
 
-1437674144 source:/home/michael/MousePaw/ratscript-git/trunk/ratscript2.0/src/r_catalog.cpp
+1440649378 source:/home/michael/MousePaw/ratscript-git/trunk/ratscript2.0/src/r_catalog.cpp
 	"r_catalog.hpp"
 
 1436376698 source:/home/michael/MousePaw/ratscript-git/trunk/ratscript2.0/src/r_conditional.cpp
@@ -1203,7 +1204,7 @@
 1436376698 source:/home/michael/MousePaw/ratscript-git/trunk/ratscript2.0/src/r_error.cpp
 	"r_error.h"
 
-1437674166 source:/home/michael/MousePaw/ratscript-git/trunk/ratscript2.0/src/r_evaluator_postfix.cpp
+1440652502 source:/home/michael/MousePaw/ratscript-git/trunk/ratscript2.0/src/r_evaluator_postfix.cpp
 	"r_evaluator_postfix.hpp"
 
 1436376698 source:/home/michael/MousePaw/ratscript-git/trunk/ratscript2.0/src/r_lexer.cpp
@@ -1215,15 +1216,335 @@
 1436376698 source:/home/michael/MousePaw/ratscript-git/trunk/ratscript2.0/src/r_parser.cpp
 	"r_parser.h"
 
-1437674188 source:/home/michael/MousePaw/ratscript-git/trunk/ratscript2.0/src/r_scope.cpp
+1440648960 source:/home/michael/MousePaw/ratscript-git/trunk/ratscript2.0/src/r_scope.cpp
 	"r_scope.hpp"
 
 1436376698 source:/home/michael/MousePaw/ratscript-git/trunk/ratscript2.0/src/r_sys.cpp
 	"r_sys.h"
 
-1436376707 source:/home/michael/MousePaw/ratscript-git/trunk/ratscript2.0/src/r_utils.cpp
+1440651036 source:/home/michael/MousePaw/ratscript-git/trunk/ratscript2.0/src/r_utils.cpp
 	"r_utils.h"
 
-1437674195 source:/home/michael/MousePaw/ratscript-git/trunk/ratscript2.0/src/r_var.cpp
+1440650794 source:/home/michael/MousePaw/ratscript-git/trunk/ratscript2.0/src/r_var.cpp
+	"r_var.hpp"
+
+1436376698 source:/home/michael/MousePaw/ratscript-git/trunk/ratscript2.0/src/r_mem.cpp
+
+1436376698 source:/media/michael/UUI/ratscript-git/trunk/ratscript2.0/src/r_conditional.cpp
+	"r_conditional.h"
+
+1436376698 /media/michael/UUI/ratscript-git/trunk/ratscript2.0/include/r_conditional.h
+	<iostream>
+	<queue>
+	<string>
+	"r_utils.h"
+
+1440388516 /media/michael/UUI/ratscript-git/trunk/ratscript2.0/include/r_utils.h
+	<iostream>
+	<string>
+	<sstream>
+	<stdexcept>
+	<math.h>
+	<bitset>
+	<vector>
+	<r_sys.h>
+
+1436376698 /media/michael/UUI/ratscript-git/trunk/ratscript2.0/include/r_sys.h
+	<iostream>
+	<string>
+
+1436376698 source:/media/michael/UUI/ratscript-git/trunk/ratscript2.0/src/r_dev.cpp
+	"r_dev.h"
+
+1436376698 /media/michael/UUI/ratscript-git/trunk/ratscript2.0/include/r_dev.h
+	<iostream>
+	<string>
+	<sstream>
+
+1436376698 source:/media/michael/UUI/ratscript-git/trunk/ratscript2.0/src/r_error.cpp
+	"r_error.h"
+
+1436376698 /media/michael/UUI/ratscript-git/trunk/ratscript2.0/include/r_error.h
+	<iostream>
+	<map>
+	<sstream>
+	<string>
+	"r_utils.h"
+
+1437674166 source:/media/michael/UUI/ratscript-git/trunk/ratscript2.0/src/r_evaluator_postfix.cpp
+	"r_evaluator_postfix.hpp"
+
+1437675060 /media/michael/UUI/ratscript-git/trunk/ratscript2.0/include/r_evaluator_postfix.hpp
+	<string>
+	<vector>
+	<queue>
+	"r_var.hpp"
+	"r_scope.hpp"
+	"r_error.h"
+	"r_math.hpp"
+	"r_utils.h"
+
+1440385438 /media/michael/UUI/ratscript-git/trunk/ratscript2.0/include/r_var.hpp
+	<cctype>
+	<ctime>
+	<iostream>
+	<string>
+	<vector>
+	<stdexcept>
+	"r_utils.h"
+
+1440354198 /media/michael/UUI/ratscript-git/trunk/ratscript2.0/include/r_scope.hpp
+	<map>
+	<string>
+	"r_catalog.hpp"
+	"r_var.hpp"
+
+1440385438 /media/michael/UUI/ratscript-git/trunk/ratscript2.0/include/r_catalog.hpp
+	<algorithm>
+	<iostream>
+	<string>
+	<vector>
+	"r_utils.h"
+	"r_var.hpp"
+	"r_mem.hpp"
+	"SinglyLinkedList.hpp"
+
+1440384617 /media/michael/UUI/ratscript-git/trunk/ratscript2.0/include/r_mem.hpp
+	<bitset>
+	<iostream>
+	<fstream>
+	"r_error.h"
+	"r_utils.h"
+	"r_dev.h"
+
+1437675038 /media/michael/UUI/ratscript-git/trunk/ratscript2.0/include/SinglyLinkedList.hpp
+	<iostream>
+	<stdlib.h>
+	<typeinfo>
+	<string.h>
+	"r_utils.h"
+
+1437674288 /media/michael/UUI/ratscript-git/trunk/ratscript2.0/include/r_math.hpp
+	<math.h>
+	"r_var.hpp"
+	"r_error.h"
+
+1436376698 source:/media/michael/UUI/ratscript-git/trunk/ratscript2.0/src/r_lexer.cpp
+	"r_lexer.h"
+
+1437675048 /media/michael/UUI/ratscript-git/trunk/ratscript2.0/include/r_lexer.h
+	<cctype>
+	<iostream>
+	<string>
+	<vector>
+	"r_catalog.hpp"
+	"r_conditional.h"
+	"r_error.h"
+	"r_parser.h"
+	"r_utils.h"
+
+1437675568 /media/michael/UUI/ratscript-git/trunk/ratscript2.0/include/r_parser.h
+	<iostream>
+	<regex>
+	<string>
+	"r_catalog.hpp"
+	"r_conditional.h"
+
+1437674178 source:/media/michael/UUI/ratscript-git/trunk/ratscript2.0/src/r_math.cpp
+	"r_math.hpp"
+
+1436376698 source:/media/michael/UUI/ratscript-git/trunk/ratscript2.0/src/r_mem.cpp
+
+1436376698 source:/media/michael/UUI/ratscript-git/trunk/ratscript2.0/src/r_parser.cpp
+	"r_parser.h"
+
+1437674188 source:/media/michael/UUI/ratscript-git/trunk/ratscript2.0/src/r_scope.cpp
+	"r_scope.hpp"
+
+1436376698 source:/media/michael/UUI/ratscript-git/trunk/ratscript2.0/src/r_sys.cpp
+	"r_sys.h"
+
+1440394641 source:/media/michael/UUI/ratscript-git/trunk/ratscript2.0/src/r_utils.cpp
+	"r_utils.h"
+
+1440394656 source:/media/michael/UUI/ratscript-git/trunk/ratscript2.0/src/r_var.cpp
+	"r_var.hpp"
+
+1440394838 source:/media/michael/UUI/ratscript-git/trunk/ratscript2.0/main.cpp
+	<cctype>
+	<iostream>
+	<string>
+	<sstream>
+	<stdlib.h>
+	"r_catalog.hpp"
+	"r_dev.h"
+	"r_scope.hpp"
+	"r_sys.h"
+	"r_lexer.h"
+	"r_var.hpp"
+	"r_evaluator_postfix.hpp"
+	"r_utils.h"
+	"r_mem.hpp"
+
+1440394698 source:/media/michael/UUI/ratscript-git/trunk/ratscript2.0/src/r_catalog.cpp
+	"r_catalog.hpp"
+
+1440649508 source:/home/michael/Desktop/ratscript-git/trunk/ratscript2.0/main.cpp
+	<cctype>
+	<iostream>
+	<string>
+	<sstream>
+	<stdlib.h>
+	"r_catalog.hpp"
+	"r_dev.h"
+	"r_scope.hpp"
+	"r_sys.h"
+	"r_lexer.h"
+	"r_var.hpp"
+	"r_evaluator_postfix.hpp"
+	"r_utils.h"
+	"r_mem.hpp"
+
+1440649004 /home/michael/Desktop/ratscript-git/trunk/ratscript2.0/include/r_catalog.hpp
+	<algorithm>
+	<iostream>
+	<string>
+	<vector>
+	"r_utils.h"
+	"r_var.hpp"
+	"r_mem.hpp"
+	"SinglyLinkedList.hpp"
+
+1440388516 /home/michael/Desktop/ratscript-git/trunk/ratscript2.0/include/r_utils.h
+	<iostream>
+	<string>
+	<sstream>
+	<stdexcept>
+	<math.h>
+	<bitset>
+	<vector>
+	<r_sys.h>
+
+1436376698 /home/michael/Desktop/ratscript-git/trunk/ratscript2.0/include/r_sys.h
+	<iostream>
+	<string>
+
+1440385438 /home/michael/Desktop/ratscript-git/trunk/ratscript2.0/include/r_var.hpp
+	<cctype>
+	<ctime>
+	<iostream>
+	<string>
+	<vector>
+	<stdexcept>
+	"r_utils.h"
+
+1440647332 /home/michael/Desktop/ratscript-git/trunk/ratscript2.0/include/r_mem.hpp
+	<bitset>
+	<iostream>
+	<fstream>
+	"r_error.h"
+	"r_utils.h"
+	"r_dev.h"
+
+1436376698 /home/michael/Desktop/ratscript-git/trunk/ratscript2.0/include/r_error.h
+	<iostream>
+	<map>
+	<sstream>
+	<string>
+	"r_utils.h"
+
+1436376698 /home/michael/Desktop/ratscript-git/trunk/ratscript2.0/include/r_dev.h
+	<iostream>
+	<string>
+	<sstream>
+
+1437675038 /home/michael/Desktop/ratscript-git/trunk/ratscript2.0/include/SinglyLinkedList.hpp
+	<iostream>
+	<stdlib.h>
+	<typeinfo>
+	<string.h>
+	"r_utils.h"
+
+1440648902 /home/michael/Desktop/ratscript-git/trunk/ratscript2.0/include/r_scope.hpp
+	<map>
+	<string>
+	"r_catalog.hpp"
+	"r_var.hpp"
+
+1437675048 /home/michael/Desktop/ratscript-git/trunk/ratscript2.0/include/r_lexer.h
+	<cctype>
+	<iostream>
+	<string>
+	<vector>
+	"r_catalog.hpp"
+	"r_conditional.h"
+	"r_error.h"
+	"r_parser.h"
+	"r_utils.h"
+
+1436376698 /home/michael/Desktop/ratscript-git/trunk/ratscript2.0/include/r_conditional.h
+	<iostream>
+	<queue>
+	<string>
+	"r_utils.h"
+
+1437675568 /home/michael/Desktop/ratscript-git/trunk/ratscript2.0/include/r_parser.h
+	<iostream>
+	<regex>
+	<string>
+	"r_catalog.hpp"
+	"r_conditional.h"
+
+1437675060 /home/michael/Desktop/ratscript-git/trunk/ratscript2.0/include/r_evaluator_postfix.hpp
+	<string>
+	<vector>
+	<queue>
+	"r_var.hpp"
+	"r_scope.hpp"
+	"r_error.h"
+	"r_math.hpp"
+	"r_utils.h"
+
+1437674288 /home/michael/Desktop/ratscript-git/trunk/ratscript2.0/include/r_math.hpp
+	<math.h>
+	"r_var.hpp"
+	"r_error.h"
+
+1440649378 source:/home/michael/Desktop/ratscript-git/trunk/ratscript2.0/src/r_catalog.cpp
+	"r_catalog.hpp"
+
+1436376698 source:/home/michael/Desktop/ratscript-git/trunk/ratscript2.0/src/r_conditional.cpp
+	"r_conditional.h"
+
+1436376698 source:/home/michael/Desktop/ratscript-git/trunk/ratscript2.0/src/r_dev.cpp
+	"r_dev.h"
+
+1436376698 source:/home/michael/Desktop/ratscript-git/trunk/ratscript2.0/src/r_error.cpp
+	"r_error.h"
+
+1440652502 source:/home/michael/Desktop/ratscript-git/trunk/ratscript2.0/src/r_evaluator_postfix.cpp
+	"r_evaluator_postfix.hpp"
+
+1436376698 source:/home/michael/Desktop/ratscript-git/trunk/ratscript2.0/src/r_lexer.cpp
+	"r_lexer.h"
+
+1437674178 source:/home/michael/Desktop/ratscript-git/trunk/ratscript2.0/src/r_math.cpp
+	"r_math.hpp"
+
+1436376698 source:/home/michael/Desktop/ratscript-git/trunk/ratscript2.0/src/r_mem.cpp
+
+1436376698 source:/home/michael/Desktop/ratscript-git/trunk/ratscript2.0/src/r_parser.cpp
+	"r_parser.h"
+
+1440648960 source:/home/michael/Desktop/ratscript-git/trunk/ratscript2.0/src/r_scope.cpp
+	"r_scope.hpp"
+
+1436376698 source:/home/michael/Desktop/ratscript-git/trunk/ratscript2.0/src/r_sys.cpp
+	"r_sys.h"
+
+1440651036 source:/home/michael/Desktop/ratscript-git/trunk/ratscript2.0/src/r_utils.cpp
+	"r_utils.h"
+
+1440650794 source:/home/michael/Desktop/ratscript-git/trunk/ratscript2.0/src/r_var.cpp
 	"r_var.hpp"
 

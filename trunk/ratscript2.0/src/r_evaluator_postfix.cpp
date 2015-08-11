@@ -48,7 +48,7 @@ r_var* r_evaluator_postfix::evaluate(string statement, queue<string>* thePostfix
             case 0:
             {
                 *buffer += statement.at(i);
-                if(i == statement.size() - 1)
+                    if(i == statement.size() - 1)
                 {
                     //clean the string then check to see if it is a variable
                     string r = getVariable(r_utils::cleanString(*buffer));

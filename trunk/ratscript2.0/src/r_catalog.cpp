@@ -11,143 +11,134 @@ catalog.
 r_catalog::r_catalog()
 {
     //Constructor
-    list = new SinglyLinkedList<r_var>();
+    ///list = new SinglyLinkedList<r_var>();
+    memory = new r_mem<65536>();
 }
 
 r_catalog::~r_catalog()
 {
     //Destructor. This will release dynamically allocated memory.
-    delete(list);
+    delete(memory);
 }
 
 //Returns true or false if variable exists.
 bool r_catalog::exists(string name)
 {
-   bool r;				//Return true/false.
    int i;				//Holds the index for testing.
-
-   i = list->indexOf(name);	//Get the master index of varaible 'name'.
-   if(i == -1)				//If index is -1 (does not exist)
-   {
-      r = false;			//Return false.
-   }
-   else					    //Else if index is not -1 (exists)
-   {
-      r = true;				//Return true.
-   }
-
-   return r;
+   return memory->binarySearch(name, &i);
 }
 
 void r_catalog::print(){
-    list->print();
+    memory->printMem();
 }
 
 //Looks up a variable and returns its type.
 r_utils::DataType r_catalog::getType(string name)
 {
-    int i = list->indexOf(name);				            //Holds the index.
-    r_utils::DataType r;		    //Holds the data type for return.
-
-    if(i == -1)				        //If the index is -1 (does not exist)
+    string binaryVal;
+    if(memory->retrieve(name, &binaryVal, NULL))
     {
-	//Throw an error.
-        //errors.throwError(errors.REFERENCE_ERROR, "The variable " + name + "' is not accessible or was not declared.");
-        r = r_utils::U;			    //Return unknown type.
+        return r_utils::DataType(r_utils::toInt(binaryVal));
     }
-    else				            //If the index is not -1 (it exists).
+    else
     {
-        r = list->get(i)->getType();		    //Return stored type.
+        return r_utils::DataType::U;
     }
-
-    return r;
 }
 
 //Looks up a variable by name and type.
+///NOTE: Do we want to throw an error if the type doesn't match, or do we want to just remove type from the lookup
 r_pointer r_catalog::lookup(string name, r_utils::DataType type)
 {
-    int i = list->indexOf(name);
-
-    if(i == -1)     //If the index is -1, the variable was not found.
+    int index;
+    if(memory->binarySearch(name, &index))
     {
-        //Throw an error.
-        //errors.throwError(errors.REFERENCE_ERROR, "The variable '" + name + "' is not accessible or was not declared.");
+
     }
-    r_pointer ptr(type, i);         //Create the Ratscript pointer.
+    r_pointer ptr(type, index);         //Create the Ratscript pointer.
     return ptr;                     //Return the Ratscript pointer.
 }
 
 //Define a new variable in the catalog.
 r_var* r_catalog::make(string name, r_utils::DataType type)
 {
-    if(list->indexOf(name) == -1)	//If the variable does not yet exist...
+    //NOTE: Don't need type?
+    int index;
+    bool tmp = memory->binarySearch(name, &index);
+    if(!tmp)	//If the variable does not yet exist...
     {
         switch(type)				        //Switch based on type.
         {
             case r_utils::B:			    //If {B}...
             {
                 r_boolean *newB = new r_boolean(name);	//Define a new {B} variable object.
-                list->addOrdered(newB, type);
+                memory->newValue(name, type, r_utils::toBinary(newB->getBooleanValue()));
                 return newB;
             }
             case r_utils::T:			    //If {T}...
             {
-                r_trilean *newT = new r_trilean(name);	//Same process.
-                list->addOrdered(newT, type);
+                r_ternary *newT = new r_ternary(name);	//Same process.
+                memory->newValue(name, type, r_utils::toBinary(newT->getTernaryValue()));
                 return newT;
             }
             case r_utils::I:
             {
                 r_integer *newI = new r_integer(name);
-                list->addOrdered(newI, type);
+                memory->newValue(name, type, r_utils::toBinary(newI->getValue()));
                 return newI;
             }
             case r_utils::N:
             {
                 r_number *newN = new r_number(name);
-                list->addOrdered(newN, type);
+                memory->newValue(name, type, r_utils::toBinary(newN->getValue()));
                 return newN;
             }
             case r_utils::S:
             {
                 r_string *newS = new r_string(name);
-                list->addOrdered(newS, type);
+                memory->newValue(name, type, r_utils::toBinary(newS->convert()));
                 return newS;
             }
             case r_utils::A:
             {
                 r_array *newA = new r_array(name);
-                list->addOrdered(newA, type);
+                //NOTE: What to do for array
+                //memory->newValue()name, type, r_utils::toBinary());
                 return newA;
             }
             case r_utils::C:
             {
                 r_struct *newC = new r_struct(name);
-                list->addOrdered(newC, type);
+                //NOTE: What to do for struct?
+                //memory->newValue(name, type, r_utils::toBinary(newC->toString()));
                 return newC;
             }
             case r_utils::R:
             {
                 r_regex *newR = new r_regex(name);
-                list->addOrdered(newR, type);
+                //NOTE: What to do for regex?
+                //memory->newValue(name, type, r_utils::toBinary(newR->toString()));
                 return newR;
             }
             case r_utils::F:
             {
                 r_function *newF = new r_function(name);
-                list->addOrdered(newF, type);
+                //NOTE: WHat to do for function?
+                //memory->newValue(name, type, r_utils::toBinary(newF->toString()));
                 return newF;
             }
             case r_utils::D:
             {
                 r_datetime *newD = new r_datetime(name);
-                list->addOrdered(newD, type);
+                //NOTE: IS this what we want to do for DateTime?
+                //memory->newValue(name, type, r_utils::toBinary(newD->getDateString()));
                 return newD;
             }
             case r_utils::X:
             {
                 r_xml *newX = new r_xml(name);
-                list->addOrdered(newX, type);
+                //NOTE: What to do for XML
+                //memory->newValue(name, type, nr_utils::toBinary(ewX->toString()));
                 return newX;
             }
         }
@@ -155,9 +146,62 @@ r_var* r_catalog::make(string name, r_utils::DataType type)
 }
 
 r_var* r_catalog::retrieve(string name){
-    return list->get(name)->getData();
+    string binaryType, binaryValue;
+    if(memory->retrieve(name, &binaryType, &binaryValue))
+    {
+        switch(r_utils::toInt(binaryType))
+        {
+            case r_utils::DataType::U:
+            {
+                ///BROADCAST ERROR?
+                break;
+            }
+            case r_utils::DataType::B:
+            {
+                return new r_boolean(name, r_utils::toBool(binaryValue));
+            }
+            case r_utils::DataType::T:
+            {
+                return new r_ternary(name, r_utils::toInt(binaryValue));
+            }
+            case r_utils::DataType::I:
+            {
+                return new r_integer(name, r_utils::toTernary(binaryValue));
+            }
+            case r_utils::DataType::N:
+            {
+                return new r_number(name, r_utils::toDouble(binaryValue));
+            }
+            case r_utils::DataType::S:
+            {
+                return new r_string(name, r_utils::binaryToString(binaryValue));
+            }
+            //TODO: Figure these out
+            case r_utils::DataType::A:
+            case r_utils::DataType::C:
+            case r_utils::DataType::R:
+            case r_utils::DataType::F:
+            case r_utils::DataType::D:
+            case r_utils::DataType::X:
+            case r_utils::DataType::O:
+            {
+                return NULL;
+            }
+        }
+    }
+    return NULL; //list->get(name)->getData();
 }
 
+//updates the passed in variable to the passed in value
+void r_catalog::update(string name, string newValue)
+{
+    if(!memory->writeValue(name, newValue))
+    {
+        r_dev::debug_broadcast("Error updating the value", "update:r_catalog", false);
+    }
+}
+
+/*
 //Retrieve variable object (pointer) from catalog using its index.
 r_boolean* r_catalog::retrieve_B(int index)
 {
@@ -183,23 +227,23 @@ r_boolean* r_catalog::retrieve_B(r_pointer pnt)
 }
 
 //Same for all following...
-r_trilean* r_catalog::retrieve_T(int index)
+r_ternary* r_catalog::retrieve_T(int index)
 {
-    r_trilean* temp = 0;
+    r_ternary* temp = 0;
     r_var* parent= list->get(index)->getData();
-    if(dynamic_cast<r_trilean*>(parent)){
-        temp = (r_trilean*) parent;
+    if(dynamic_cast<r_ternary*>(parent)){
+        temp = (r_ternary*) parent;
     }
     return temp;
 }
 
-r_trilean* r_catalog::retrieve_T(r_pointer pnt)
+r_ternary* r_catalog::retrieve_T(r_pointer pnt)
 {
     int index = pnt.getIndex();
-    r_trilean* temp = 0;
+    r_ternary* temp = 0;
     r_var* parent= list->get(index)->getData();
-    if(dynamic_cast<r_trilean*>(parent)){
-        temp = (r_trilean*) parent;
+    if(dynamic_cast<r_ternary*>(parent)){
+        temp = (r_ternary*) parent;
     }
     return temp;
 }
@@ -392,3 +436,4 @@ r_xml* r_catalog::retrieve_X(r_pointer pnt)
     }
     return temp;
 }
+*/

@@ -42,7 +42,7 @@ namespace ratscript
 //            bool createInt(string name, string data, r_mem mem);
 //            bool createDouble(string name, string data, r_mem mem);
 //            bool createBoolean(string name, string data, r_mem mem);
-//            bool createTrilean(string name, string data, r_mem mem);
+//            bool createternary(string name, string data, r_mem mem);
 //            bool createString(string name, string data, r_mem mem);
 
             enum DataType
@@ -69,12 +69,12 @@ namespace ratscript
             //static DataType getDataType2(std::string, r_catalog*);
 
             static int getPrecedence(string);
-            ///TODO: Write methods for boolean & trilean. Comment toFloat and toDouble
-            ///THEN Write wrapper methods for boolean & trilean.
+            ///TODO: Write methods for boolean & ternary. Comment toFloat and toDouble
+            ///THEN Write wrapper methods for boolean & ternary.
             ///Then write a generic wrapper method just in case. Pass in varName, data, and "INTEGER" or "BOOLEAN" etc
             static string toBinary(bool b);
             static bool toBool(string);
-            static int toTrilean(string);
+            static int toTernary(string);
             static string toBinary(int, int numBits = 32);
             static int toInt(string);
             static string toBinary(long, int numBits = 32);

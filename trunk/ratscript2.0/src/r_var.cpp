@@ -294,22 +294,22 @@ int r_boolean::compareTo(r_var* otherVariable)
     }
 }
 
-//FUNCTIONS FOR TRILEAN
+//FUNCTIONS FOR ternary
 
-r_trilean::r_trilean(string name)
+r_ternary::r_ternary(string name)
 {
     r_var::type = r_utils::T;
     refName = name;
 }
 
-r_trilean::r_trilean(string name, int val)
+r_ternary::r_ternary(string name, int val)
 {
     r_var::type == r_utils::T;
     refName = name;
     setValue(val);
 }
 
-int r_trilean::convert()
+int r_ternary::convert()
 {
     int r = value;
     return r;
@@ -317,9 +317,9 @@ int r_trilean::convert()
 
 //Virtual function, returns the value of the current variable
 //return true if the value is true, otherwise return false
-bool r_trilean::getBooleanValue()
+bool r_ternary::getBooleanValue()
 {
-    if(value == r_trilean::FALSE)
+    if(value == r_ternary::FALSE)
     {
         return false;
     }
@@ -329,7 +329,12 @@ bool r_trilean::getBooleanValue()
     }
 }
 
-string r_trilean::toString()
+int r_ternary::getTernaryValue()
+{
+    return value;
+}
+
+string r_ternary::toString()
 {
     if(value == TRUE)
     {
@@ -345,7 +350,7 @@ string r_trilean::toString()
     }
 }
 
-bool r_trilean::setValue(int initialValue)
+bool r_ternary::setValue(int initialValue)
 {
     switch(initialValue)
     {
@@ -366,7 +371,7 @@ bool r_trilean::setValue(int initialValue)
     return true;
 }
 
-bool r_trilean::setValue(string statement)
+bool r_ternary::setValue(string statement)
 {
     string cleanString = r_utils::cleanString(statement);
     if(cleanString == "true" || cleanString == "TRUE")
@@ -388,16 +393,16 @@ bool r_trilean::setValue(string statement)
     return true;
 }
 
-//checks to see if the two trilean values are equal. Returns 0 if they are
+//checks to see if the two ternary values are equal. Returns 0 if they are
 //returns -1 if they are not equal
-//throws error if passed in variable is not a trilean
-int r_trilean::compareTo(r_var* otherVariable)
+//throws error if passed in variable is not a ternary
+int r_ternary::compareTo(r_var* otherVariable)
 {
-    //checks to see if the passed in variable is an trilean
-    if(dynamic_cast<r_trilean*>(otherVariable))
+    //checks to see if the passed in variable is an ternary
+    if(dynamic_cast<r_ternary*>(otherVariable))
     {
-        //if it is, cast it to a trilean and then check to see if they two values are equal
-        if(this->convert() == ((r_trilean*) otherVariable)->convert())
+        //if it is, cast it to a ternary and then check to see if they two values are equal
+        if(this->convert() == ((r_ternary*) otherVariable)->convert())
         {
             return 0;
         }
@@ -408,12 +413,12 @@ int r_trilean::compareTo(r_var* otherVariable)
     }
     else
     {
-        //TODO throw error if not trilean
-        //errors.throwError(r_errors::TYPE_ERROR, "Second argument was not a trilean");
+        //TODO throw error if not ternary
+        //errors.throwError(r_errors::TYPE_ERROR, "Second argument was not a ternary");
     }
 }
 
-bool r_trilean::setValue(r_trilean::TrileanState initialValue)
+bool r_ternary::setValue(r_ternary::TernaryState initialValue)
 {
     value = initialValue;
     return true;

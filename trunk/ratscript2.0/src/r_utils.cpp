@@ -21,9 +21,9 @@ namespace ratscript
 //        {
 //            //createBoolean(name, data, mem);
 //        }
-//        else if(type == "TRILEAN")
+//        else if(type == "ternary")
 //        {
-//            //createTrilean(name, data, mem);
+//            //createternary(name, data, mem);
 //        }
 //        else if(type == "INTEGER")
 //        {
@@ -73,7 +73,7 @@ namespace ratscript
 //        return val;
 //    }
 //
-//    bool r_utils::createTrilean(string name, string data, r_mem mem)
+//    bool r_utils::createternary(string name, string data, r_mem mem)
 //    {
 //        int val;
 //        if(data == "true")
@@ -505,7 +505,7 @@ namespace ratscript
         }
         else if(statement == "true" || statement == "false" || statement == "TRUE" || statement == "FALSE")
         {
-            //TODO what if we want it to be trilean?
+            //TODO what if we want it to be ternary?
             return r_utils::DataType::B;
         }
 
@@ -664,7 +664,7 @@ namespace ratscript
         return binary[7] == '1';
     }
 
-    int r_utils::toTrilean(string binary)
+    int r_utils::toTernary(string binary)
     {
         return toLong(binary);
     }
@@ -904,8 +904,8 @@ namespace ratscript
             bool isFirst = true;
             //a temporary representation of the value after the decimal. afterDecimal is needed later
             double temp = afterDecimal;
+            while(pageIndex < numBits && ((int) (temp * 1000)) != 0)
             //keep going until all of the bits of the mantissa are used
-            while(pageIndex < numBits)
             {
                 //multiply the value by 2
                 temp *= 2;

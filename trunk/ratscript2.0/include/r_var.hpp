@@ -98,14 +98,14 @@ class r_boolean:public r_var
     private:
 };
 
-//Trilean {T} can store true, false, or maybe (indeterminate).
-class r_trilean:public r_var
+//ternary {T} can store true, false, or maybe (indeterminate).
+class r_ternary:public r_var
 {
     public:
-        r_trilean(string);
-        r_trilean(string, int);
+        r_ternary(string);
+        r_ternary(string, int);
 
-        enum TrileanState
+        enum TernaryState
         {
             FALSE = 0,
             TRUE = 1,
@@ -115,12 +115,13 @@ class r_trilean:public r_var
         int convert();
         int compareTo(r_var*);
         bool getBooleanValue();
+        int getTernaryValue();
         string toString();
         bool setValue(int);
         bool setValue(string);
-        bool setValue(TrileanState);
+        bool setValue(TernaryState);
     protected:
-        TrileanState value;
+        TernaryState value;
     private:
 };
 

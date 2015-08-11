@@ -41,6 +41,12 @@ r_var* r_scope::retrieve(string name)
     return catalog->retrieve(name);
 }
 
+//update the passed in variable to the passed in value
+void r_scope::update(string name, string newValue)
+{
+    catalog->update(name, newValue);
+}
+
 //get the desired scope
 //return NULL if no scope was found matching the given name
 r_scope* r_scope::getScope(string scopeName)

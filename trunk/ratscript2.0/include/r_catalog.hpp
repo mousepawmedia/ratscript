@@ -15,6 +15,7 @@
 
 #include "r_utils.h"
 #include "r_var.hpp"
+#include "r_mem.hpp"
 //#include "r_errors.h"
 #include "SinglyLinkedList.hpp"
 
@@ -36,12 +37,12 @@ class r_catalog
         void print();
 
         r_var* retrieve(string);
-
+        void update(string, string);
         r_boolean* retrieve_B(int);
         r_boolean* retrieve_B(r_pointer);
 
-        r_trilean* retrieve_T(int);
-        r_trilean* retrieve_T(r_pointer);
+        r_ternary* retrieve_T(int);
+        r_ternary* retrieve_T(r_pointer);
 
         r_integer* retrieve_I(int);
         r_integer* retrieve_I(r_pointer);
@@ -73,8 +74,8 @@ class r_catalog
 
     private:
         //Singly Linked List to store names types. Maybe variables?
-        SinglyLinkedList<r_var>* list;
-
+        ///SinglyLinkedList<r_var>* list;
+        r_mem<65536>* memory;
         //TODO: Add scope to variables.
 
 };

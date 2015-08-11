@@ -836,9 +836,9 @@ class r_mem
             return false;
         }
 
-        //ENTRY: Retrieve variable from memory
-        //retrieve the value of a variable
-        bool retrieve(string name, string* binary)
+        //ENTRY: Retrieve variable type from memory
+        //can retrieve the type of a variable or the value of the variable
+        bool retrieve(string name, string* binaryType, string* binaryValue)
         {
             int pageIndex;
             if(binarySearch(name, &pageIndex))
@@ -852,8 +852,9 @@ class r_mem
                 //set the cursor equal to the index
                 pageCursor = pageIndex;
                 nextState(&currentPage);
+                *binaryType = getValue(currentPage, pageCursor, valueSize(currentPage));
                 nextState(&currentPage);
-                *binary = getValue(currentPage, pageCursor, valueSize(currentPage));
+                *binaryValue = getValue(currentPage, pageCursor, valueSize(currentPage));
                 return true;
             }
             return false;
@@ -1235,7 +1236,10 @@ class r_mem
                 resetPageCursor();
                 int newIndex;
                 if(pageIndex == PageSize)
+                {
                     newIndex = memSize;
+                    memIndex += memSize;
+                }
                 else
                     newIndex = pageIndex - PageSize;
                 //return the search helper value of the next page
@@ -1257,11 +1261,12 @@ class r_mem
                 //the page cursor equal the index
                 if(pageIndex < memSize)
                 {
+                    memIndex += (memSize - pageIndex);
                     pageCursor = memSize;
                 }
                 else
                     pageCursor = pageIndex;
-
+                //NOTE: memIndex? Why did I do this haha?
                 memCursor = memIndex;
                 bool searching = true;
                 int currSeperator = 0;

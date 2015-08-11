@@ -25,6 +25,7 @@ class r_scope
         r_catalog* getCatalog();
         r_var* make(string, r_utils::DataType);
         r_var* retrieve(string);
+        void update(string, string);
         bool addScope(string);
         int removeScope(string);
     private:

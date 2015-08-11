@@ -36,6 +36,9 @@ r_lexer* lexer;
 
 //Variables
 string buffer;
+//NOTE: Used for randomized testing. remove later
+std::vector<unsigned int> sequence;
+std::vector<unsigned int> currRun;
 
 //Main function
 int main()
@@ -212,6 +215,43 @@ void startup()
 
 }
 
+unsigned int rollDice(unsigned int minimum, unsigned int maximum)
+{
+    unsigned int r = rand() % maximum + minimum;
+
+    //Validate random number.
+    r > maximum ? r = maximum : r;
+    r < minimum ? r = minimum : r;
+
+    return r;
+}
+
+void sequenceReset(unsigned int size)
+{
+    sequence.clear();
+    for(unsigned int i=1;i<=size;i++)
+    {
+        sequence.push_back(i);
+    }
+}
+
+int sequenceNext()
+{
+    int r = 0;
+    if(sequence.size() != 0)
+    {
+        int index = (rollDice(1, sequence.size())) - 1;
+        r = sequence[index];
+        sequence.erase(sequence.begin() + index);
+    }
+    return r;
+}
+
+bool sequenceEmpty()
+{
+    return (sequence.size() <= 0);
+}
+
 /*------------------ UNIT TESTER ------------------*/
 
 /**Run the indicated unit test.
@@ -244,18 +284,23 @@ void unitTest(int test)
         {
             r_integer* int1 = (r_integer*) scope->make("int1", r_utils::I);
             int1 -> setValue(8);
+            scope->update("int1", r_utils::toBinary(int1->getValue()));
 
             r_integer* int2 = (r_integer*) scope->make("int2", r_utils::I);
             int2 -> setValue(2);
+            scope->update("int2", r_utils::toBinary(int2->getValue()));
 
             r_number* num1 = (r_number*)scope->make("num1", r_utils::N);
             num1 -> setValue(5);
+            scope->update("num1", r_utils::toBinary(num1->getValue()));
 
             r_string* string1 = (r_string*) scope->make("string1", r_utils::S);
             string1 -> setValue("Mike");
+            scope->update("string1", r_utils::toBinary(string1->convert()));
 
             r_string* string2 = (r_string*)scope->make("string2", r_utils::S);
             string2 -> setValue("Sam I am");
+            scope->update("string2", r_utils::toBinary(string2->convert()));
 
             string test = "(@r:c{int1} - @r:c{int2} > @r:c{num1} && @r:c{int1} * (@r:c{int2} + @r:c{num1}) == 56) && @r:c{string1} == \"Mike\"";
             //string test = "r:c{int1} = @r:c{int2} + 6";
@@ -271,15 +316,18 @@ void unitTest(int test)
             //create variables in the new scope
             r_integer* int1 = (r_integer*) scope->make("int1", r_utils::I);
             int1->setValue(8);
+            scope->update("int1", r_utils::toBinary(int1->getValue()));
 
             r_integer* int2 = (r_integer*) scope->make("int2", r_utils::I);
             int2->setValue(2);
+            scope->update("int2", r_utils::toBinary(int1->getValue()));
             //create a new scope and add it to the main scope
             if(scope->addScope("Temp Scope"))
             {
                 //create variables in the new scope
                 r_integer* int3 = (r_integer*) scope->getScope("Temp Scope")->make("int3", r_utils::I);
                 int3->setValue(34);
+                scope->getScope("Temp Scope")->update("int3", r_utils::toBinary(int1->getValue()));
             }
             else
             {
@@ -337,6 +385,7 @@ void unitTest(int test)
         ///CREATE SUPER INTENSIVE TESTING FOR MEMORY
         ///LOOK UP Dynamic dispatch
             stringstream ss;
+            string bin;
             r_mem<65536> myMem;
             bool allGood = true;
             ///sometimes can not find variables. 377 is max page. 378 creates new page
@@ -351,12 +400,20 @@ void unitTest(int test)
             for(i = 0; i < total && allGood; i++)
             {
                 ss << 'a' << i;
-                //cout << ">>>>>>>>>>> Starting to create variable: " << i << endl;
-                //if(i == 771)
-                //    myMem.printMem();
-                allGood = myMem.newValue(ss.str(), r_utils::DataType::I, r_utils::toBinary(i));
-//                if(i == 23)
-                    //myMem.printMem();
+                allGood = myMem.newValue(ss.str(), r_utils::DataType::S, r_utils::toBinary("a"));
+                //allGood = myMem.newValue(ss.str(), r_utils::DataType::I, r_utils::toBinary(i));
+                if(!(allGood = myMem.retrieve(ss.str(), NULL, &bin)))
+                {
+                    cout << "name is: " << ss.str() << endl;
+//                        myMem.printMem();
+//                        fstream myfile;
+//                        myfile.open ("runsequence.txt", std::fstream::in | std::fstream::out | std::fstream::app);
+//                        for(int i = 0; i < currRun.size(); i++)
+//                        {
+//                            myfile << currRun[i] << endl;
+//                        }
+                    break;
+                }
                 ss.str("");
             }
             if(!allGood)
@@ -369,7 +426,6 @@ void unitTest(int test)
             }
             //myMem.printMem();
             myMem.printMem();
-            string bin;
 //            for(i = 0; i < total && allGood; i++)
 //            {
 //                if(i % 5 == 0)
@@ -392,7 +448,7 @@ void unitTest(int test)
                 ss << 'a' << i;
                 if(i == 23)
                     cout << "";
-                allGood = myMem.retrieve(ss.str(), &bin);
+                allGood = myMem.retrieve(ss.str(), NULL, &bin);
                 if(!allGood)
                     cout << "name is: " << ss.str() << endl;//<< " and value is: " << bin << endl;
                 ss.str("");
@@ -433,6 +489,7 @@ void unitTest(int test)
             ///CREATE SUPER INTENSIVE TESTING FOR MEMORY
         ///LOOK UP Dynamic dispatch
             stringstream ss;
+            string bin;
             r_mem<65536> myMem;
             bool allGood = true;
             ///sometimes can not find variables. 377 is max page. 378 creates new page
@@ -444,12 +501,21 @@ void unitTest(int test)
             for(i = total - 1; i > -1 && allGood; i--)
             {
                 ss << 'a' << i;
-                //cout << ">>>>>>>>>>> Starting to create variable: " << i << endl;
-                //if(i == 377)
-                //    myMem.printMem();
-                allGood = myMem.newValue(ss.str(), r_utils::DataType::I, r_utils::toBinary(i));
-//                if(i == 23)
-                    //myMem.printMem();
+                myMem.printMem();
+                allGood = myMem.newValue(ss.str(), r_utils::DataType::S, r_utils::toBinary("a"));
+                //allGood = myMem.newValue(ss.str(), r_utils::DataType::I, r_utils::toBinary(i));
+                if(!(allGood = myMem.retrieve(ss.str(), NULL, &bin)))
+                {
+                    cout << "name is: " << ss.str() << endl;
+//                        myMem.printMem();
+//                        fstream myfile;
+//                        myfile.open ("runsequence.txt", std::fstream::in | std::fstream::out | std::fstream::app);
+//                        for(int i = 0; i < currRun.size(); i++)
+//                        {
+//                            myfile << currRun[i] << endl;
+//                        }
+                    break;
+                }
                 ss.str("");
             }
             if(!allGood)
@@ -462,30 +528,12 @@ void unitTest(int test)
             }
             //myMem.printMem();
             myMem.printMem();
-            string bin;
-//            for(i = 0; i < total && allGood; i++)
-//            {
-//                if(i % 5 == 0)
-//                {
-//                    ss << i;
-//                    allGood = myMem.deleteValue(ss.str());
-//                    ss.str("");
-//                }
-//            }
-//            if(!allGood)
-//            {
-//                cout << "============================================================ ERROR DELETING " << i - 1 <<  " ZOMG ======================================================" << endl;
-//            }
-//            else
-//            {
-//                cout << "============================================================ Variable Deletion Complete! ======================================================" << endl;
-//            }
             for(i = 0; i < total; i++)
             {
                 ss << 'a' << i;
                 //if(i == 337)
                 //    cout << "";
-                allGood = myMem.retrieve(ss.str(), &bin);
+                allGood = myMem.retrieve(ss.str(), NULL, &bin);
                 if(!allGood)
                     cout << "name is: " << ss.str() << endl;//<< " and value is: " << bin << endl;
                 ss.str("");
@@ -521,7 +569,98 @@ void unitTest(int test)
 //            }
             break;
         }
+        ///run multiple times check for cominalities
         case 8:
+        {
+            cout << "Enter total number of variables to test" << endl;
+            int total;
+            cin >> total;
+            for(int i = 0; i < total; i++)
+            {
+                stringstream ss;
+                r_mem<65536> myMem;
+                bool allGood = true;
+                int currNum = 0;
+                sequenceReset(total);
+                string bin;
+                while(!sequenceEmpty())
+                {
+                    currNum = sequenceNext();
+                    currRun.push_back(currNum);
+                    ss << currNum;
+                    //NOTE: Used to test string values isntead of integer values
+                    //allGood = myMem.newValue(ss.str(), r_utils::DataType::S, r_utils::toBinary(ss.str()));
+                    myMem.newValue(ss.str(), r_utils::DataType::I, r_utils::toBinary(currNum));
+                    if(!(allGood = myMem.retrieve(ss.str(), NULL, &bin)))
+                    {
+                        cout << "name is: " << ss.str() << endl;
+                        myMem.printMem();
+                        fstream myfile;
+                        myfile.open ("runsequence.txt", std::fstream::in | std::fstream::out | std::fstream::app);
+                        for(int i = 0; i < currRun.size(); i++)
+                        {
+                            myfile << currRun[i] << endl;
+                        }
+                        break;
+                    }
+                    ss.str("");
+                }
+                if(!allGood)
+                    break;
+                sequenceReset(total);
+                while(!sequenceEmpty())
+                {
+                    currNum = sequenceNext();
+                    ss << currNum;
+                    allGood = myMem.retrieve(ss.str(), NULL, &bin);
+                    if(!allGood)
+                    {
+                        cout << "name is: " << ss.str() << endl;
+                        myMem.printMem();
+                        fstream myfile;
+                        myfile.open ("runsequence.txt", std::fstream::in | std::fstream::out | std::fstream::app);
+                        for(int i = 0; i < currRun.size(); i++)
+                        {
+                            myfile << currRun[i] << endl;
+                        }
+                        break;
+                    }
+                    ss.str("");
+                }
+                currRun.clear();
+            }
+            break;
+        }
+        case 9:
+        {
+            cout << "Enter total number of variables to test" << endl;
+            int total;
+            cin >> total;
+            cout << "Enter number to stop at" << endl;
+            int stopNum;
+            cin >> stopNum;
+            r_mem<65536> myMem;
+            fstream myfile;
+            stringstream ss;
+            myfile.open ("runsequence.txt", std::fstream::in | std::fstream::out | std::fstream::app);
+            int currNum;
+            for(int i = 0; i < total; i++)
+            {
+                myfile >> currNum;
+                ss << currNum;
+                if(currNum == stopNum)
+                {
+                    cout << "";
+                }
+                //NOTE: Used to test string values isntead of integer values
+                //allGood = myMem.newValue(ss.str(), r_utils::DataType::S, r_utils::toBinary(ss.str()));
+                myMem.newValue(ss.str(), r_utils::DataType::I, r_utils::toBinary(currNum));
+                ss.str("");
+            }
+            myMem.printMem();
+            break;
+        }
+        case 10:
         {
             float myFloat = 0.0;
             string binaryFloat = r_utils::toBinary(myFloat);
