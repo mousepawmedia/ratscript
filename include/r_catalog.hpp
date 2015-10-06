@@ -1,4 +1,4 @@
-/**Ratscript Norvegicus: Catalog<p>
+/**Ratscript Norvegicus: Catalog
 * The catalog stores all the variables and functions defined within Ratscript.
 * @since 2.0
 * @author Michael Parkman
