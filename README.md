@@ -45,7 +45,7 @@ Ratscript is licenced under the GNU General Public Licence 3.0. (See LICENCE.md)
 
 The project is owned and maintained by [MousePaw Games][1].
 
-[1]: http://www.mousepawgames.com/anari
+[1]: http://www.mousepawgames.com/ratscript
 [2]: http://www.mousepawgames.com/opensource
 [3]: http://www.mousepawgames.com/opensource#contribute
 [4]: http://www.mousepawgames.com/termsofdevelopment
