@@ -6,7 +6,8 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-
+   design
+   syntax
 
 Indices and tables
 ==================
