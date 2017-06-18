@@ -41,7 +41,7 @@ All contributions are licensed to us under the
 
 License
 -------------
-Ratscript is licenced under the GNU General Public Licence 3.0. (See LICENCE.md)
+Ratscript is licensed under the GNU General Public License 3.0. (See License.md)
 
 The project is owned and maintained by [MousePaw Media][2].
 
