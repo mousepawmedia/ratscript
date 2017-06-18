@@ -37,16 +37,15 @@ If you would like to contribute code, please read our
 [Contribution Guide][2].
 
 All contributions are licensed to us under the
-[MousePaw Games Terms of Development][3].
+[MousePaw Media Terms of Development][3].
 
 License
 -------------
 Ratscript is licenced under the GNU General Public Licence 3.0. (See LICENCE.md)
 
-The project is owned and maintained by [MousePaw Games][1].
+The project is owned and maintained by [MousePaw Media][2].
 
-[1]: http://www.mousepawgames.com/ratscript
-[2]: http://www.mousepawgames.com/opensource
-[3]: http://www.mousepawgames.com/opensource#contribute
-[4]: http://www.mousepawgames.com/termsofdevelopment
-
+[1]: https://www.mousepawmedia.com/ratscript
+[2]: https://www.mousepawmedia.com/
+[3]: https://www.mousepawmedia.com/developers/contributing
+[4]: https://www.mousepawmedia.com/termsofdevelopment
