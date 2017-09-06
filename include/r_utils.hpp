@@ -5,8 +5,8 @@
 * @author Michael Parkman
 */
 
-#ifndef R_UTILS_H
-#define R_UTILS_H
+#ifndef R_UTILS_HPP
+#define R_UTILS_HPP
 
 #include <iostream>
 #include <string>
@@ -18,7 +18,7 @@
 
 //#include "r_catalog.h"
 
-#include <r_sys.h>
+#include "r_sys.hpp"
 
 using std::bitset;
 using std::vector;
@@ -150,4 +150,4 @@ namespace ratscript
     };
 }
 
-#endif // R_UTILS_H
+#endif // R_UTILS_HPP

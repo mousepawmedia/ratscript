@@ -10,7 +10,7 @@
 #include <math.h>
 
 #include "r_var.hpp"
-#include "r_error.h"
+#include "r_error.hpp"
 
 using std::ostringstream;
 

@@ -6,13 +6,13 @@
 * @author Jason C. McDonald
 */
 
-#ifndef R_CONDITIONAL_H
-#define R_CONDITIONAL_H
+#ifndef R_CONDITIONAL_HPP
+#define R_CONDITIONAL_HPP
 
 #include <iostream>
 #include <queue>
 #include <string>
-#include "r_utils.h"
+#include "r_utils.hpp"
 
 using std::cin;
 using std::cout;

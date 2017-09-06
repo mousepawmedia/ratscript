@@ -1,4 +1,4 @@
-#include "r_lexer.h"
+#include "r_lexer.hpp"
 
 //Define the ruleset for MAKE statements (the sentinel characters, in order).
 //We're commenting this out and using literals instead.

@@ -4,15 +4,15 @@
 * @author Jason C. McDonald
 */
 
-#ifndef R_ERROR_H
-#define R_ERROR_H
+#ifndef R_ERROR_HPP
+#define R_ERROR_HPP
 
 #include <iostream>
 #include <map>
 #include <sstream>
 #include <string>
 
-#include "r_utils.h"
+#include "r_utils.hpp"
 
 using ratscript::r_utils;
 using std::string;

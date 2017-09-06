@@ -5,16 +5,16 @@
 #include <stdlib.h>
 
 //Ratscript classes
-#include "r_catalog.hpp"
-#include "r_dev.h"
-#include "r_scope.hpp"
-#include "r_sys.h"
-#include "r_lexer.h"
+#include "include/r_catalog.hpp"
+#include "include/r_dev.hpp"
+#include "include/r_scope.hpp"
+#include "include/r_sys.hpp"
+#include "include/r_lexer.hpp"
 //#include "r_lexer_fsm.h"
-#include "r_var.hpp"
-#include "r_evaluator_postfix.hpp"
-#include "r_utils.h"
-#include "r_mem.hpp"
+#include "include/r_var.hpp"
+#include "include/r_evaluator_postfix.hpp"
+#include "include/r_utils.hpp"
+#include "include/r_mem.hpp"
 
 using std::iostream;
 using ratscript::r_dev;
@@ -27,6 +27,8 @@ void runTest();
 void unitTest(int);
 int interpret(string);
 void startup();
+
+//segfault on tests 2, 6, 7, and 8
 
 //Ratscript class declarations
 //r_errors errors;
@@ -280,7 +282,7 @@ void unitTest(int test)
         }
         //TEST 2: Postfix Evaluator Checker
         //Author: Michael Parkman
-        case 2:
+        case 2: // getting a segfault
         {
             r_integer* int1 = (r_integer*) scope->make("int1", r_utils::I);
             int1 -> setValue(8);
@@ -380,7 +382,7 @@ void unitTest(int test)
         }
         //Test 6: Adding new variables and overriding their values and then deleting some
         //Author: Michael Parkman
-        case 6:
+        case 6: // getting a segfault
         {
         ///CREATE SUPER INTENSIVE TESTING FOR MEMORY
         ///LOOK UP Dynamic dispatch
@@ -484,7 +486,7 @@ void unitTest(int test)
 //            }
             break;
         }
-        case 7:
+        case 7:// segfault
         {
             ///CREATE SUPER INTENSIVE TESTING FOR MEMORY
         ///LOOK UP Dynamic dispatch
@@ -570,7 +572,7 @@ void unitTest(int test)
             break;
         }
         ///run multiple times check for cominalities
-        case 8:
+        case 8: // segfault
         {
             cout << "Enter total number of variables to test" << endl;
             int total;

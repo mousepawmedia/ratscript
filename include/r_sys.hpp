@@ -4,8 +4,8 @@
 * @author Jason C. McDonald
 */
 
-#ifndef R_SYS_H
-#define R_SYS_H
+#ifndef R_SYS_HPP
+#define R_SYS_HPP
 
 #include <iostream>
 #include <string>

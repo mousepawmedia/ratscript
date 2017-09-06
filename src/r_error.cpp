@@ -1,4 +1,4 @@
-#include "r_error.h"
+#include "r_error.hpp"
 
 //Define all of the proper names for the error codes (enums).
 map<r_error::ErrorType, string> r_error::errorNames = {

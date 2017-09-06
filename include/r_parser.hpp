@@ -5,15 +5,15 @@
 * @author Michael Parkman
 */
 
-#ifndef R_PARSER_H_INCLUDED
-#define R_PARSER_H_INCLUDED
+#ifndef R_PARSER_HPP_INCLUDED
+#define R_PARSER_HPP_INCLUDED
 
 #include <iostream>
 #include <regex>
 #include <string>
 
 #include "r_catalog.hpp"
-#include "r_conditional.h"
+#include "r_conditional.hpp"
 
 using std::cout;
 using std::endl;

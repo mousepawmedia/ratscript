@@ -6,7 +6,7 @@ These functions allow for the creation, search, and removal of items from the
 catalog.
 */
 
-#include "r_catalog.hpp"
+#include "include/r_catalog.hpp"
 
 r_catalog::r_catalog()
 {

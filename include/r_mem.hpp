@@ -11,9 +11,9 @@
 #include <iostream>
 #include <fstream>
 
-#include "r_error.h"
-#include "r_utils.h"
-#include "r_dev.h"
+#include "r_error.hpp"
+#include "r_utils.hpp"
+#include "r_dev.hpp"
 
 using std::fstream;
 

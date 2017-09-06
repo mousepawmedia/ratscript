@@ -2,29 +2,26 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="ratscript2.0" />
+		<Option title="Ratscript2.0" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="src/;" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/ratscript2" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Debug/Ratscript2" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
-					<Add directory="include" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/ratscript2" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Release/Ratscript2" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
-					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -36,23 +33,20 @@
 		</Compiler>
 		<Unit filename="include/SinglyLinkedList.hpp" />
 		<Unit filename="include/r_catalog.hpp" />
-		<Unit filename="include/r_conditional.h" />
-		<Unit filename="include/r_dev.h" />
+		<Unit filename="include/r_conditional.hpp" />
+		<Unit filename="include/r_dev.hpp" />
 		<Unit filename="include/r_doublylinkedlist.hpp" />
-		<Unit filename="include/r_error.h" />
-		<Unit filename="include/r_evaluator.h">
-			<Option virtualFolder="src/" />
-		</Unit>
+		<Unit filename="include/r_error.hpp" />
 		<Unit filename="include/r_evaluator_postfix.hpp" />
-		<Unit filename="include/r_lexer.h" />
+		<Unit filename="include/r_lexer.hpp" />
 		<Unit filename="include/r_math.hpp" />
 		<Unit filename="include/r_mem.hpp" />
-		<Unit filename="include/r_parser.h" />
-		<Unit filename="include/r_reserved.h" />
+		<Unit filename="include/r_parser.hpp" />
+		<Unit filename="include/r_reserved.hpp" />
 		<Unit filename="include/r_scope.hpp" />
 		<Unit filename="include/r_singlylinkedlist.hpp" />
-		<Unit filename="include/r_sys.h" />
-		<Unit filename="include/r_utils.h" />
+		<Unit filename="include/r_sys.hpp" />
+		<Unit filename="include/r_utils.hpp" />
 		<Unit filename="include/r_var.hpp" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/r_catalog.cpp" />
@@ -70,8 +64,8 @@
 		<Unit filename="src/r_var.cpp" />
 		<Extensions>
 			<code_completion />
-			<debugger />
 			<envvars />
+			<debugger />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

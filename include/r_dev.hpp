@@ -1,5 +1,5 @@
-#ifndef R_DEV_H
-#define R_DEV_H
+#ifndef R_DEV_HPP
+#define R_DEV_HPP
 
 #include <iostream>
 #include <string>

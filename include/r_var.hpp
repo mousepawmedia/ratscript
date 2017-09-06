@@ -17,7 +17,7 @@
 #include <vector>
 #include <stdexcept>
 
-#include "r_utils.h"
+#include "r_utils.hpp"
 
 using ratscript::r_utils;
 using std::vector;

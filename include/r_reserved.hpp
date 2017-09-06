@@ -4,13 +4,13 @@ Reserved
 Manages reserved keywords in Ratscript.
 */
 
-#ifndef R_RESERVED_H
-#define R_RESERVED_H
+#ifndef R_RESERVED_HPP
+#define R_RESERVED_HPP
 
 #include <iostream>
 #include <string>
 
-#include "r_utils.h"
+#include "r_utils.hpp"
 
 using namespace std;
 

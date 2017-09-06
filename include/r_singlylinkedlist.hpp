@@ -11,7 +11,7 @@
 #include <stdlib.h>
 #include <typeinfo>
 #include <string.h>
-#include "r_utils.h"
+#include "r_utils.hpp"
 
 using std::cout;
 using std::endl;

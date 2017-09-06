@@ -6,8 +6,8 @@
 * @author Michael Parkman
 */
 
-#ifndef R_LEXER_H
-#define R_LEXER_H
+#ifndef R_LEXER_HPP
+#define R_LEXER_HPP
 
 #include <cctype>
 #include <iostream>
@@ -15,10 +15,10 @@
 #include <vector>
 
 #include "r_catalog.hpp"
-#include "r_conditional.h"
-#include "r_error.h"
-#include "r_parser.h"
-#include "r_utils.h"
+#include "r_conditional.hpp"
+#include "r_error.hpp"
+#include "r_parser.hpp"
+#include "r_utils.hpp"
 
 using std::cin;
 using std::cout;

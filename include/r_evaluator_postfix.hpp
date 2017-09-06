@@ -13,9 +13,9 @@
 
 #include "r_var.hpp"
 #include "r_scope.hpp"
-#include "r_error.h"
+#include "r_error.hpp"
 #include "r_math.hpp"
-#include "r_utils.h"
+#include "r_utils.hpp"
 
 using std::queue;
 
