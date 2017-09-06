@@ -7,11 +7,13 @@
 **/obj
 **/lib
 **/libs
+**/ratscript
+!language/include/ratscript
 docs/build
 *.depend
 *.layout
 **/build_temp
 *.config
 !default.config
-**/ratscript
-!language/include/ratscript
+rsconsole
+rsconsole_debug
