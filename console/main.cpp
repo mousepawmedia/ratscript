@@ -233,7 +233,7 @@ void startup()
     //Broadcast version.
     r_utils::broadcast("Ratscript 2.0 \"Norvegicus\"");
     //Broadcast copyright notice.
-    r_utils::broadcast("Copyright (C) 2014 MousePaw Games. All Rights Reserved.");
+    r_utils::broadcast("Copyright (C) 2014 MousePaw Media. All Rights Reserved.");
 
     //If the system allows ANSI formatting...
     if(r_sys::useANSI())
