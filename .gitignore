@@ -17,3 +17,4 @@ docs/build
 !default.config
 rsconsole
 rsconsole_debug
+codealike.json
