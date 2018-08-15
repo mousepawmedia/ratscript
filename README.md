@@ -6,21 +6,24 @@ standard library. Ratscript 2.0 "Norvegicus" is currently in
 development. See the [official project page][1].
 
 ## Authors
+
  - Jason C. McDonald
  - Michael Parkman
  - Nate Groggett
 
 ## Dependencies
+
 - CPGF: Available from libdeps ([GitHub][8])
 - PawLIB: Available from [GitHub][7].
-- SIMPLEXpress: Available from [GitHub][6]
 
 ## Building
+
 If you have the full source repository, see BUILDING.md for information
 on how to build Ratscript.
 
-The Ready-To-Use version of Ratscript only contains the compiled binary.
-You can find the full source repository on [GitHub][5].
+The Ready-To-Use version of Ratscript only contains the folders `include`
+and `lib`, and the binary for the REPL (console). You can find the full
+source repository on [GitHub][5].
 
 ## Contributions
 We do not accept pull requests through GitHub.
@@ -40,6 +43,5 @@ The project is owned and maintained by [MousePaw Media][2].
 [3]: https://www.mousepawmedia.com/developers/contributing
 [4]: https://www.mousepawmedia.com/termsofdevelopment
 [5]: https://github.com/mousepawmedia/ratscript
-[6]: https://github.com/mousepawmedia/simplexpress
 [7]: https://github.com/mousepawmedia/pawlib
 [8]: https://github.com/mousepawmedia/libdeps

@@ -52,22 +52,6 @@ set(PAWLIB_DIR
 	${CMAKE_HOME_DIRECTORY}/../../pawlib/pawlib
 )
 
-##### SIMPLEXPRESS #####
-#
-# This sets the path to SIMPLEXpress.
-# The build system will look for 'lib/' and 'include/' at this location.
-#
-# The default is '${CMAKE_HOME_DIRECTORY}/../../simplexpress/simplexpress',
-# which assumes a copy of the simplexpress git repository in the same directory
-# as this repository folder.
-#
-# 'make ready' would need to be run in that repository to generate the
-# library.
-
-set(SIMPLEXPRESS_DIR
-	${CMAKE_HOME_DIRECTORY}/../../simplexpress/simplexpress
-)
-
 ##### LLVM LIBC++ #####
 #
 # This option asks the Clang compiler to use LLVM's libc++ library.
