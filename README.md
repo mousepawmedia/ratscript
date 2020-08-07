@@ -26,6 +26,7 @@ and `lib`, and the binary for the REPL (console). You can find the full
 source repository on [GitHub][5].
 
 ## Contributions
+
 We do not accept pull requests through GitHub.
 If you would like to contribute code, please read our
 [Contribution Guide][2].
