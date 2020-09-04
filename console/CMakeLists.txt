@@ -129,9 +129,9 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/../../lib/$<CONF
 include_directories(include)
 
 # CHANGEME: Include headers of dependencies.
-include_directories(${CMAKE_HOME_DIRECTORY}/../language/include)
-include_directories(${PAWLIB_DIR}/include)
-include_directories(${CPGF_DIR}/include)
+# include_directories(${CMAKE_HOME_DIRECTORY}/../language/include)
+# include_directories(${PAWLIB_DIR}/include)
+# include_directories(${CPGF_DIR}/include)
 
 # CHANGEME: Include files to compile.
 add_executable(${TARGET_NAME}
@@ -139,9 +139,9 @@ add_executable(${TARGET_NAME}
 )
 
 # CHANGEME: Link against dependencies.
-target_link_libraries(${TARGET_NAME} ${CMAKE_HOME_DIRECTORY}/../language/lib/$<CONFIG>/libratscript.a)
-target_link_libraries(${TARGET_NAME} ${PAWLIB_DIR}/lib/libpawlib.a)
-target_link_libraries(${TARGET_NAME} ${CPGF_DIR}/lib/libcpgf.a)
+# target_link_libraries(${TARGET_NAME} ${CMAKE_HOME_DIRECTORY}/../language/lib/$<CONFIG>/libratscript.a)
+# target_link_libraries(${TARGET_NAME} ${PAWLIB_DIR}/lib/libpawlib.a)
+# target_link_libraries(${TARGET_NAME} ${CPGF_DIR}/lib/libcpgf.a)
 
 if(COMPILERTYPE STREQUAL "clang")
     if(SAN STREQUAL "address")

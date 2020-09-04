@@ -56,7 +56,7 @@ RM_DIR = @cmake -E remove_directory
 ECHO = @cmake -E echo
 
 # CHANGEME: Project name
-NAME = "Ratscript 2.0"
+NAME = "Ratscript 0.1"
 
 # CHANGEME: Set to 'lib' or 'bin'
 BUILD_DIR = lib
