@@ -43,19 +43,17 @@
 
 
 # include <iostream>
-
-
+# include <string>
 
 // Main function
 
 int main()
 {
-
-    std::cout << "Welcome to Ratscript v0.1 console, please enter some text to get started." << std::endl;
-    std::cout << "I lied, we only take numbers right now." << std::endl;
-    int x;
-    std::cin >> x;
-    std::cout << "Your number is: " << x << std::endl;
-    
-    return 0;
+  std::string consoleInput;
+  std::cout << "Welcome to Ratscript v0.1 console, please enter some awesome "
+  "code or something else cool to get started." << std::endl;
+  getline (std::cin, consoleInput);
+  std::cout << "Your input is: " << consoleInput << std::endl;
+  
+  return 0;
 }
