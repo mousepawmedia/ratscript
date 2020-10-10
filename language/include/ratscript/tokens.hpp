@@ -1,9 +1,10 @@
-/** Main [Ratscript Console]
+/** Tokens [Ratscript]
   * Version: 0.1
   *
-  * The interactive console for Ratscript.
+  * Token class. Used by lexer to separate input into logical units or lexemes
+  * in order to pass on to the parser. 
   *
-  * Author(s): Michael Parkman, Jason C. McDonald, Anna R. Dunster
+  * Author(s): Anna R. Dunster
   */
 
 /* LICENSE
@@ -41,38 +42,52 @@
  * on how to contribute to our projects.
  */
 
+/* In each token, we need to store the actual literal content of the token,
+ * the type of token it is, and where in the input it was found (for error
+ * reporting).  This information should be accessible, but not changeable
+ * after initialization. 
+ */
+
+#ifndef R_TOKENS_HPP
+#define R_TOKENS_HPP
+
 #include <iostream>
-#include <string>
+#include "ratscript/tokentypes.hpp"
 
-#include "ratscript/lexer.hpp"
-#include "ratscript/tokens.hpp"
-
-void get_input()
+class Token
 {
-	std::string console_input;
-	std::cout << "Welcome to Ratscript v0.1 console, please enter some "
-			  << "awesome code or something else cool to get started."
-			  << std::endl;
-	getline(std::cin, console_input);
-	something(console_input);
-}
+private:
+	const char *literal_;
+	TokenType token_type_;
+	int line_;
+	int position_;
 
-void awesome_test_code_function()
-{
-	std::cout << "The current home of awesome test code" << std::endl;
-	const char *stuff = "stuff";
-	TokenType tt = TokenType::RIGHT_BRACE;
-	Token test_token(stuff, tt, 2, 1);
+public:
+	Token(const char *literal, TokenType token_type, int line, int position) :
+		literal_(literal), token_type_(token_type), line_(line), position_(position)
+	{
+	}
 
-	std::cout << test_token.literal() << std::endl;
-}
+	const char *literal()
+	{
+		return literal_;
+	}
 
-// Main function
+	int token_type()
+	{
+		return int(token_type_);
+	}
 
-int main()
-{
-	// awesome_test_code_function();
-	get_input();
+	int line()
+	{
+		return line_;
+	}
 
-	return 0;
-}
+	int position()
+	{
+		return position_;
+	}
+
+};
+
+#endif

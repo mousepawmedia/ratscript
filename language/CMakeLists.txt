@@ -133,14 +133,19 @@ include_directories(include)
 # include_directories(${CPGF_DIR}/include)
 
 # CHANGEME: Include files to compile.
-# add_library(${TARGET_NAME} STATIC
+add_library(${TARGET_NAME} STATIC
+    include/ratscript/lexer.hpp
+    include/ratscript/tokens.hpp
+    include/ratscript/tokentypes.hpp
+    src/lexer.cpp
+    src/tokens.cpp
+    src/tokentypes.cpp
 #     include/ratscript/catalog.hpp
 #     include/ratscript/conditional.hpp
 #     include/ratscript/dev.hpp
 #     include/ratscript/doublylinkedlist.hpp
 #     include/ratscript/error.hpp
 #     include/ratscript/evaluator_postfix.hpp
-#     include/ratscript/lexer.hpp
 #     include/ratscript/math.hpp
 #     include/ratscript/mem.hpp
 #     include/ratscript/parser.hpp
@@ -154,7 +159,6 @@ include_directories(include)
 #     src/dev.cpp
 #     src/error.cpp
 #     src/evaluator_postfix.cpp
-#     src/lexer.cpp
 #     src/math.cpp
 #     src/mem.cpp
 #     src/parser.cpp
@@ -162,11 +166,11 @@ include_directories(include)
 #     src/sys.cpp
 #     src/utils.cpp
 #     src/var.cpp
-# )
+)
 
 # CHANGEME: Link against dependencies.
-target_link_libraries(${TARGET_NAME} ${PAWLIB_DIR}/lib/libpawlib.a)
-target_link_libraries(${TARGET_NAME} ${CPGF_DIR}/lib/libcpgf.a)
+# target_link_libraries(${TARGET_NAME} ${PAWLIB_DIR}/lib/libpawlib.a)
+# target_link_libraries(${TARGET_NAME} ${CPGF_DIR}/lib/libcpgf.a)
 
 if(COMPILERTYPE STREQUAL "clang")
     if(SAN STREQUAL "address")

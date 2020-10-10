@@ -50,7 +50,7 @@ LN = @cmake -E create_symlink
 none: help
 
 help:
-	$(ECHO) "=== Ratscript 2.0 ==="
+	$(ECHO) "=== Ratscript 0.1 ==="
 	$(ECHO) "Select a build target:"
 	$(ECHO) "  make ready              Build Ratscript and bundles it for distribution."
 	$(ECHO) "  make clean              Clean up Ratscript."
@@ -60,8 +60,8 @@ help:
 	$(ECHO) "  make docs_pdf           Generate PDF docs."
 	$(ECHO) "  make ratscript          Build Ratscript as release."
 	$(ECHO) "  make ratscript_debug    Build Ratscript as debug."
-	$(ECHO) "  make console            Build Ratscript as release."
-	$(ECHO) "  make console_debug      Build Ratscript as debug."
+	$(ECHO) "  make console            Build Ratscript console as release."
+	$(ECHO) "  make console_debug      Build Ratscript console as debug."
 	$(ECHO) "  make all                Build everything."
 	$(ECHO) "  make allfresh           Clean and rebuild everything."
 	$(ECHO)

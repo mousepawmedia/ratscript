@@ -1,9 +1,9 @@
-/** Main [Ratscript Console]
+/** TokenTypes [Ratscript]
   * Version: 0.1
   *
-  * The interactive console for Ratscript.
+  * Enum class for the possible types of Token that may be designated.
   *
-  * Author(s): Michael Parkman, Jason C. McDonald, Anna R. Dunster
+  * Author(s): Anna R. Dunster
   */
 
 /* LICENSE
@@ -41,38 +41,58 @@
  * on how to contribute to our projects.
  */
 
-#include <iostream>
-#include <string>
+/* Enum types */
 
-#include "ratscript/lexer.hpp"
-#include "ratscript/tokens.hpp"
+#ifndef R_TOKENTYPES_HPP
+#define R_TOKENTYPES_HPP
 
-void get_input()
+enum class TokenType
 {
-	std::string console_input;
-	std::cout << "Welcome to Ratscript v0.1 console, please enter some "
-			  << "awesome code or something else cool to get started."
-			  << std::endl;
-	getline(std::cin, console_input);
-	something(console_input);
-}
+	// Single Character tokens.
+	LEFT_PAREN,
+	RIGHT_PAREN,
+	LEFT_BRACE,
+	RIGHT_BRACE,
+	COMMA,
+	DOT,
+	MINUS,
+	PLUS,
+	SEMICOLON,
+	SLASH,
+	STAR,
 
-void awesome_test_code_function()
-{
-	std::cout << "The current home of awesome test code" << std::endl;
-	const char *stuff = "stuff";
-	TokenType tt = TokenType::RIGHT_BRACE;
-	Token test_token(stuff, tt, 2, 1);
+	// One or two character tokens.
+	BANG,
+	BANG_EQUAL,
+	EQUAL,
+	EQUAL_EQUAL,
+	GREATER,
+	GREATER_EQUAL,
+	LESS,
+	LESS_EQUAL,
 
-	std::cout << test_token.literal() << std::endl;
-}
+	// Literals.
+	IDENTIFIER,
+	STRING,
+	NUMBER,
 
-// Main function
+	// Keywords.
+	AND,
+	CLASS,
+	ELSE,
+	FALSE,
+	FUN,
+	FOR,
+	IF,
+	NIL,
+	OR,
+	PRINT,
+	RETURN,
+	SUPER,
+	THIS,
+	TRUE,
+	VAR,
+	WHILE
+};
 
-int main()
-{
-	// awesome_test_code_function();
-	get_input();
-
-	return 0;
-}
+#endif

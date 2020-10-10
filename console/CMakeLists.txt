@@ -129,7 +129,7 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/../../lib/$<CONF
 include_directories(include)
 
 # CHANGEME: Include headers of dependencies.
-# include_directories(${CMAKE_HOME_DIRECTORY}/../language/include)
+include_directories(${CMAKE_HOME_DIRECTORY}/../language/include)
 # include_directories(${PAWLIB_DIR}/include)
 # include_directories(${CPGF_DIR}/include)
 

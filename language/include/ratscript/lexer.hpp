@@ -1,7 +1,8 @@
-/** Main [Ratscript Console]
+/** Lexer [Ratscript]
   * Version: 0.1
   *
-  * The interactive console for Ratscript.
+  * Lexes input strings, splitting them into their appropriate parts and sending
+  * them on to the parser.
   *
   * Author(s): Michael Parkman, Jason C. McDonald, Anna R. Dunster
   */
@@ -41,38 +42,29 @@
  * on how to contribute to our projects.
  */
 
+/*
+Lexer needs:
+- A token class that has each token and its attributes (type, lexeme, object, 
+line location in code)
+- a list of token types (enumeration)
+- a way to discern where lexemes begin and end (recognize single character 
+    lexemes, then look for multi character, etc)
+- a way to identify lexemes and tokenize them
+- something to do with garbage input
+
+Use SIMPLExpress
+
+*/
+
+#ifndef R_LEXER_HPP
+#define R_LEXER_HPP
+
 #include <iostream>
-#include <string>
 
-#include "ratscript/lexer.hpp"
-#include "ratscript/tokens.hpp"
-
-void get_input()
+void something(const std::string &user_input)
 {
-	std::string console_input;
-	std::cout << "Welcome to Ratscript v0.1 console, please enter some "
-			  << "awesome code or something else cool to get started."
-			  << std::endl;
-	getline(std::cin, console_input);
-	something(console_input);
+	// Just testing that the console is properly calling this file.
+	std::cout << "Your input is: " << user_input << std::endl;
 }
 
-void awesome_test_code_function()
-{
-	std::cout << "The current home of awesome test code" << std::endl;
-	const char *stuff = "stuff";
-	TokenType tt = TokenType::RIGHT_BRACE;
-	Token test_token(stuff, tt, 2, 1);
-
-	std::cout << test_token.literal() << std::endl;
-}
-
-// Main function
-
-int main()
-{
-	// awesome_test_code_function();
-	get_input();
-
-	return 0;
-}
+#endif
