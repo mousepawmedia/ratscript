@@ -1,0 +1,42 @@
+{
+    "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false,
+
+    "c-cpp-flylint.cppcheck.force": false,
+    "c-cpp-flylint.cppcheck.includePaths": [
+        "./language/include"
+    ],
+    "c-cpp-flylint.standard": [
+        "c11",
+        "c++11"
+    ],
+
+    "[c]": {
+        "editor.detectIndentation": false,
+        "editor.insertSpaces": true,
+        "editor.tabSize": 4,
+    },
+
+    "[cpp]": {
+        "editor.detectIndentation": false,
+        "editor.insertSpaces": true,
+        "editor.tabSize": 4,
+    },
+
+    "files.associations": {
+        "array": "cpp",
+        "cmath": "cpp",
+        "type_traits": "cpp",
+        "typeinfo": "cpp",
+        "exception": "cpp",
+        "thread": "cpp",
+        "string_view": "cpp"
+    },
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+
+    "restructuredtext.builtDocumentationPath": "${workspaceRoot}/docs/build/html",
+    "C_Cpp.intelliSenseEngineFallback": "Enabled",
+    "restructuredtext.confPath": "${workspaceFolder}/docs/source",
+    "cmake.sourceDirectory": "${workspaceFolder}/language"
+}
