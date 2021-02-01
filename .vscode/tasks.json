@@ -6,7 +6,7 @@
         {
             "label": "Build Debug",
             "type": "shell",
-            "command": "make tester_debug",
+            "command": "make console_debug",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -15,7 +15,7 @@
         {
             "label": "Rebuild Debug",
             "type": "shell",
-            "command": "make cleandebug; make tester_debug",
+            "command": "make cleandebug; make console_debug",
             "group": "build",
         },
         {
@@ -27,13 +27,13 @@
         {
             "label": "Rebuild Release",
             "type": "shell",
-            "command": "make cleanrelease, make tester",
+            "command": "make cleanrelease, make console",
             "group": "build",
         },
         {
             "label": "Run Debug",
             "type": "shell",
-            "command": "./tester_debug",
+            "command": "./console_debug",
             "group": {
                 "kind": "test",
                 "isDefault": true
@@ -43,7 +43,7 @@
         {
             "label": "Run Release",
             "type": "shell",
-            "command": "./tester",
+            "command": "./console",
             "group": "test",
             "dependsOn": "Build Release"
         },

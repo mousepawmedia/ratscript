@@ -1,20 +1,21 @@
 # Ratscript
 
-**Ratscript** is designed to be a multi-paradigm runtime
-interpreted language with a simple syntax and a high-performance
-standard library. Ratscript 2.0 "Norvegicus" is currently in
-development. See the [official project page][1].
+**Ratscript** is designed to be a multi-paradigm runtime interpreted language
+with a simple syntax and a high-performance standard library. Ratscript is
+currently in development. See the [official project page][1].
 
 ## Authors
 
- - Jason C. McDonald
- - Michael Parkman
- - Nate Groggett
+- Anna Dunster
+- Nate Groggett
+- Jason C. McDonald
+- Michael Parkman
 
 ## Dependencies
 
 - CPGF: Available from libdeps ([GitHub][8])
 - PawLIB: Available from [GitHub][7].
+- SIMPLEXpress: Available from [Github][9].
 
 ## Building
 
@@ -35,6 +36,7 @@ All contributions are licensed to us under the
 [MousePaw Media Terms of Development][3].
 
 ## License
+
 Ratscript is licensed under the BSD-3 License. (See LICENSE.md)
 
 The project is owned and maintained by [MousePaw Media][2].
@@ -46,3 +48,4 @@ The project is owned and maintained by [MousePaw Media][2].
 [5]: https://github.com/mousepawmedia/ratscript
 [7]: https://github.com/mousepawmedia/pawlib
 [8]: https://github.com/mousepawmedia/libdeps
+[9]: https://github.com/mousepawmedia/simplexpress

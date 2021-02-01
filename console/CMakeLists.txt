@@ -56,6 +56,13 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
     endif()
     set(COMPILERTYPE "clang")
     message("Clang 3.4 or later detected. Proceeding...")
+# Allow AppleClang 5.x
+elseif(CMAKE_CXX_COMPILER_ID STREQUAL "AppleClang")
+    if(CMAKE_CXX_COMPILER_VERSION VERSION_LESS "5")
+        message(FATAL_ERROR "Clang is too old. >= v5.x required. Aborting build.")
+    endif()
+    set(COMPILERTYPE "clang")
+    message("Clang 5.0 or later detected.  Proceeding...")
 # Allow GCC 5.x
 elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
     if(CMAKE_CXX_COMPILER_VERSION VERSION_LESS "5")
@@ -74,9 +81,9 @@ else()
     message(FATAL_ERROR "Not using or simulating a compatible compiler (minimum GCC 5.x, Clang 3.4). Other compilers are not yet supported. Aborting build.")
 endif()
 
-# Target C++14
-set(CMAKE_CXX_STANDARD 14)
-# Disable extensions (turns gnu++14 to c++14)
+# Target C++17
+set(CMAKE_CXX_STANDARD 17)
+# Disable extensions (turns gnu++17 to c++17)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Target 32-bit or 64-bit, based on ARCH variable.
@@ -119,19 +126,15 @@ elseif(COMPILERTYPE STREQUAL "clang")
     #set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} ")
 endif()
 
-if(LD)
-    message("Using ${LD} linker...")
-    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fuse-ld=${LD}")
-endif()
-
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/../../lib/$<CONFIG>")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/../../bin/${CMAKE_BUILD_TYPE}")
 
 include_directories(include)
 
 # CHANGEME: Include headers of dependencies.
 include_directories(${CMAKE_HOME_DIRECTORY}/../language/include)
-# include_directories(${PAWLIB_DIR}/include)
-# include_directories(${CPGF_DIR}/include)
+include_directories(${SIMPLEXPRESS_DIR}/include)
+include_directories(${PAWLIB_DIR}/include)
+include_directories(${CPGF_DIR}/include)
 
 # CHANGEME: Include files to compile.
 add_executable(${TARGET_NAME}
@@ -139,9 +142,10 @@ add_executable(${TARGET_NAME}
 )
 
 # CHANGEME: Link against dependencies.
-# target_link_libraries(${TARGET_NAME} ${CMAKE_HOME_DIRECTORY}/../language/lib/$<CONFIG>/libratscript.a)
-# target_link_libraries(${TARGET_NAME} ${PAWLIB_DIR}/lib/libpawlib.a)
-# target_link_libraries(${TARGET_NAME} ${CPGF_DIR}/lib/libcpgf.a)
+target_link_libraries(${TARGET_NAME} ${CMAKE_HOME_DIRECTORY}/../language/lib/${CMAKE_BUILD_TYPE}/libratscript.a)
+target_link_libraries(${TARGET_NAME} ${SIMPLEXPRESS_DIR}/lib/libsimplexpress.a)
+target_link_libraries(${TARGET_NAME} ${PAWLIB_DIR}/lib/libpawlib.a)
+target_link_libraries(${TARGET_NAME} ${CPGF_DIR}/lib/libcpgf.a)
 
 if(COMPILERTYPE STREQUAL "clang")
     if(SAN STREQUAL "address")

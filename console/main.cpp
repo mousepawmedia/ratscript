@@ -1,10 +1,10 @@
 /** Main [Ratscript Console]
-  * Version: 0.1
-  *
-  * The interactive console for Ratscript.
-  *
-  * Author(s): Michael Parkman, Jason C. McDonald, Anna R. Dunster
-  */
+ * Version: 0.1
+ *
+ * The interactive console for Ratscript.
+ *
+ * Author(s): Michael Parkman, Jason C. McDonald, Anna R. Dunster
+ */
 
 /* LICENSE
  * Copyright (c) 2020 MousePaw Media.
@@ -44,35 +44,50 @@
 #include <iostream>
 #include <string>
 
+#include "pawlib/onestring.hpp"
 #include "ratscript/lexer.hpp"
 #include "ratscript/tokens.hpp"
+#include "simplexpress/simplex.hpp"
 
-void get_input()
+onestring get_input()
 {
 	std::string console_input;
-	std::cout << "Welcome to Ratscript v0.1 console, please enter some "
-			  << "awesome code or something else cool to get started."
-			  << std::endl;
+
 	getline(std::cin, console_input);
 	something(console_input);
+	return console_input;
 }
 
 void awesome_test_code_function()
 {
 	std::cout << "The current home of awesome test code" << std::endl;
-	const char *stuff = "stuff";
-	TokenType tt = TokenType::RIGHT_BRACE;
-	Token test_token(stuff, tt, 2, 1);
+	onestring steve = "stuff";
+	std::cout << steve << std::endl;
 
-	std::cout << test_token.literal() << std::endl;
+	Simplex simplex("^d+/");
+	std::cout << simplex.match("1234") << std::endl;
+	// const char *stuff = "stuff";
+	// TokenType tt = TokenType::RIGHT_BRACE;
+	// Token test_token(stuff, tt, 2, 1);
+
+	// std::cout << test_token.literal() << std::endl;
 }
 
 // Main function
 
 int main()
 {
-	// awesome_test_code_function();
-	get_input();
+	std::cout << "Welcome to Ratscript v0.1 console, please enter a totally "
+				 "random SIMPLEXpress model to get started!"
+			  << std::endl;
+	onestring model = get_input();
+	Simplex simplex(model);
+	std::cout << "Now let's match something against the model..." << std::endl;
+	onestring input = get_input();
+	bool match = simplex.match(input);
+	std::cout << "Your input " << input
+			  << (match ? " matches" : " doesn't match") << " the model "
+			  << model << "." << std::endl;
 
 	return 0;
 }

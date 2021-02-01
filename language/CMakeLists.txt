@@ -74,9 +74,9 @@ else()
     message(FATAL_ERROR "Not using or simulating a compatible compiler (minimum GCC 5.x, Clang 3.4). Other compilers are not yet supported. Aborting build.")
 endif()
 
-# Target C++14
-set(CMAKE_CXX_STANDARD 14)
-# Disable extensions (turns gnu++14 to c++14)
+# Target C++17
+set(CMAKE_CXX_STANDARD 17)
+# Disable extensions (turns gnu++17 to c++17)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Target 32-bit or 64-bit, based on ARCH variable.
@@ -124,7 +124,7 @@ if(LD)
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fuse-ld=${LD}")
 endif()
 
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/../../lib/$<CONFIG>")
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/../../lib/${CMAKE_BUILD_TYPE}")
 
 include_directories(include)
 

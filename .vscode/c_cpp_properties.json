@@ -8,6 +8,8 @@
           "${workspaceRoot}/../libdeps/libs/include",
           "${workspaceRoot}/../pawlib/pawlib/include",
           "${workspaceRoot}/../pawlib/pawlib/include/pawlib",
+          "${workspaceRoot}/../simplexpress/simplexpress/include/simplexpress",
+          "${workspaceRoot}/../simplexpress/simplexpress/include",
           "${workspaceRoot}/language/include",
           "${workspaceRoot}/language/include/ratscript"
         ],
@@ -19,6 +21,8 @@
             "/usr/local/include",
             "${workspaceRoot}/../libdeps/libs/include",
             "${workspaceRoot}/../pawlib/pawlib/include",
+            "${workspaceRoot}/../simplexpress/simplexpress/include",
+            "${workspaceRoot}/language/include",
             "${workspaceRoot}"
           ],
           "limitSymbolsToIncludedHeaders": true,
@@ -32,10 +36,10 @@
       {
         "name": "Linux",
         "includePath": [
-          "/usr/include/c++/7",
-          "/usr/include/x86_64-linux-gnu/c++/7",
-          "/usr/include/c++/7/backward",
-          "/usr/lib/gcc/x86_64-linux-gnu/7/include",
+          "/usr/include/c++/9",
+          "/usr/include/x86_64-linux-gnu/c++/9",
+          "/usr/include/c++/9/backward",
+          "/usr/lib/gcc/x86_64-linux-gnu/9/include",
           "/usr/local/include",
           "/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed",
           "/usr/include/x86_64-linux-gnu",
@@ -43,6 +47,10 @@
           "${workspaceRoot}/../libdeps/libs/include",
           "${workspaceRoot}/../pawlib/pawlib/include",
           "${workspaceRoot}/../pawlib/pawlib/include/pawlib",
+          "${workspaceRoot}/../simplexpress/simplexpress/include/simplexpress",
+          "${workspaceRoot}/../simplexpress/simplexpress/include",
+          "${workspaceRoot}/language/include",
+          "${workspaceRoot}/language/include/ratscript",
           "${workspaceRoot}/language/include"
         ],
         "defines": [],
@@ -72,7 +80,11 @@
           "${workspaceRoot}",
           "${workspaceRoot}/../libdeps/libs/include",
           "${workspaceRoot}/../pawlib/pawlib/include",
-          "${workspaceRoot}/../pawlib/pawlib/include/pawlib"
+          "${workspaceRoot}/../pawlib/pawlib/include/pawlib",
+          "${workspaceRoot}/../simplexpress/simplexpress/include/simplexpress",
+          "${workspaceRoot}/../simplexpress/simplexpress/include",
+          "${workspaceRoot}/language/include",
+          "${workspaceRoot}/language/include/ratscript"
         ],
         "defines": [
           "_DEBUG",
