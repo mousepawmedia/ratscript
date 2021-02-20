@@ -13,9 +13,13 @@ currently in development. See the [official project page][1].
 
 ## Dependencies
 
-- CPGF: Available from libdeps ([GitHub][8])
-- PawLIB: Available from [GitHub][7].
-- SIMPLEXpress: Available from [Github][9].
+- eventpp: Available from libdeps ([GitHub][6])
+- Arctic Tern: Available from [GitHub][7].
+- IOSqueak: Available from [GitHub][8].
+- Nimbly: Available from [GitHub][9].
+- Onestring: Available from [GitHub][10].
+- Goldilocks 1.0: Available from [GitHub][11]. (Tester only)
+- SIMPLEXpress: Available from [GitHub][12].
 
 ## Building
 
@@ -46,6 +50,10 @@ The project is owned and maintained by [MousePaw Media][2].
 [3]: https://www.mousepawmedia.com/developers/contributing
 [4]: https://www.mousepawmedia.com/termsofdevelopment
 [5]: https://github.com/mousepawmedia/ratscript
-[7]: https://github.com/mousepawmedia/pawlib
-[8]: https://github.com/mousepawmedia/libdeps
-[9]: https://github.com/mousepawmedia/simplexpress
+[6]: https://github.com/mousepawmedia/libdeps
+[7]: https://github.com/mousepawmedia/arctic-tern
+[8]: https://github.com/mousepawmedia/iosqueak
+[9]: https://github.com/mousepawmedia/nimbly
+[10]: https://github.com/mousepawmedia/onestring
+[11]: https://github.com/mousepawmedia/goldilocks/tree/stable
+[12]: https://github.com/mousepawmedia/simplexpress

@@ -23,33 +23,91 @@
 
 ##### THIRD-PARTY DEPENDENCIES #####
 #
-# This sets the path to CPGF.
-# The build system will look for `lib/` and `include/' at this location.
+# This sets the path to eventpp.
+# The build system will look for 'include/' at this location.
 #
 # The default for all is '${CMAKE_HOME_DIRECTORY}/../../libdeps/lib', which
 # assumes a copy of the libdeps repository in the same directory as this
 # repository folder.
 #
-# 'make <library>' or 'make all' would need to be run in libdeps first.
+# 'make eventpp' or 'make all' would need to be run in libdeps first.
 
-set(CPGF_DIR
+set(EVENTPP_DIR
 	${CMAKE_HOME_DIRECTORY}/../../libdeps/libs
 )
 
-##### PAWLIB #####
+
+##### ARCTIC TERN #####
 #
-# This sets the path to PawLIB.
-# The build system will look for 'lib/' and 'include/' at this location.
+# This sets the path to Arctic Tern.
+# The build system will look for 'include/' at this location.
 #
-# The default is '${CMAKE_HOME_DIRECTORY}/../../pawlib/pawlib', which
-# assumes a copy of the pawlib git repository in the same directory as this
+# The default is '${CMAKE_HOME_DIRECTORY}/../../arctic-tern/arctic-tern', which
+# assumes a copy of the Arctic Tern git repository in the same directory as
+# this repository folder.
+#
+# 'make ready' would need to be run in that repository to generate the library.
+
+set(ARCTICTERN_DIR
+	${CMAKE_HOME_DIRECTORY}/../../arctic-tern/arctic-tern
+)
+
+##### GOLDILOCKS #####
+#
+# This sets the path to Goldilocks, which is used by the tester.
+#
+# The default is '${CMAKE_HOME_DIRECTORY}/../../goldilocks/goldilocks', which
+# assumes a copy of the Goldilocks git repository in the same directory as this
 # repository folder.
 #
-# 'make ready' would need to be run in that repository to generate the
-# library.
+# 'make ready' would need to be run in that repository to build the library.
 
-set(PAWLIB_DIR
-	${CMAKE_HOME_DIRECTORY}/../../pawlib/pawlib
+set(GOLDILOCKS_DIR
+	${CMAKE_HOME_DIRECTORY}/../../goldilocks/goldilocks
+)
+
+##### IOSQUEAK #####
+#
+# This sets the path to IOSqueak, which is used by the tester.
+#
+# The default is '${CMAKE_HOME_DIRECTORY}/../../iosqueak/iosqueak', which
+# assumes a copy of the Goldilocks git repository in the same directory as this
+# repository folder.
+#
+# 'make ready' would need to be run in that repository to build the library.
+
+set(IOSQUEAK_DIR
+	${CMAKE_HOME_DIRECTORY}/../../iosqueak/iosqueak
+)
+
+##### NIMBLY #####
+#
+# This sets the path to Nimbly.
+# The build system will look for 'include/' at this location.
+#
+# The default is '${CMAKE_HOME_DIRECTORY}/../../nimbly/nimbly', which
+# assumes a copy of the Nimbly git repository in the same directory as
+# this repository folder.
+#
+# 'make ready' would need to be run in that repository to generate the library.
+
+set(NIMBLY_DIR
+	${CMAKE_HOME_DIRECTORY}/../../nimbly/nimbly
+)
+
+##### ONESTRING #####
+#
+# This sets the path to Onestring.
+# The build system will look for 'include/' at this location.
+#
+# The default is '${CMAKE_HOME_DIRECTORY}/../../onestring/onestring', which
+# assumes a copy of the Nimbly git repository in the same directory as
+# this repository folder.
+#
+# 'make ready' would need to be run in that repository to generate the library.
+
+set(ONESTRING_DIR
+	${CMAKE_HOME_DIRECTORY}/../../onestring/onestring
 )
 
 ##### SIMPLEXPRESS #####

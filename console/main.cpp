@@ -44,10 +44,10 @@
 #include <iostream>
 #include <string>
 
-#include "pawlib/onestring.hpp"
+#include "onestring/onestring.hpp"
 #include "ratscript/lexer.hpp"
 #include "ratscript/tokens.hpp"
-#include "simplexpress/simplex.hpp"
+// #include "simplexpress/simplex.hpp"
 
 onestring get_input()
 {
@@ -64,8 +64,8 @@ void awesome_test_code_function()
 	onestring steve = "stuff";
 	std::cout << steve << std::endl;
 
-	Simplex simplex("^d+/");
-	std::cout << simplex.match("1234") << std::endl;
+	// Simplex simplex("^d+/");
+	// std::cout << simplex.match("1234") << std::endl;
 	// const char *stuff = "stuff";
 	// TokenType tt = TokenType::RIGHT_BRACE;
 	// Token test_token(stuff, tt, 2, 1);
@@ -80,14 +80,14 @@ int main()
 	std::cout << "Welcome to Ratscript v0.1 console, please enter a totally "
 				 "random SIMPLEXpress model to get started!"
 			  << std::endl;
-	onestring model = get_input();
-	Simplex simplex(model);
-	std::cout << "Now let's match something against the model..." << std::endl;
-	onestring input = get_input();
-	bool match = simplex.match(input);
-	std::cout << "Your input " << input
-			  << (match ? " matches" : " doesn't match") << " the model "
-			  << model << "." << std::endl;
+	// onestring model = get_input();
+	// Simplex simplex(model);
+	// std::cout << "Now let's match something against the model..." << std::endl;
+	// onestring input = get_input();
+	// bool match = simplex.match(input);
+	// std::cout << "Your input " << input
+	// 		  << (match ? " matches" : " doesn't match") << " the model "
+	// 		  << model << "." << std::endl;
 
 	return 0;
 }

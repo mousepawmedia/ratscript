@@ -14,12 +14,23 @@ Clang (3.4 or later).
 
 ## Building and Linking Dependencies
 
-Ratscript relies on SIMPLEXpress and PawLIB, which relies on CPGF. The default
-behavior of the build system is to look for MousePaw Media's `libdeps/`,
-`pawlib/`, and `simplexpress/` repositories, cloned parallel to this
-repository's main folder. Simply run `$ make ready` in each of those
-repositories (optionally, you can run `$ make cpgf` in `libdeps/`) before
-building this one. (This is our default for company development environments.)
+Ratscript relies on the following:
+
+* Arctic Tern
+* eventpp
+* IOSqueak
+* Nimbly
+* Onestring
+* SIMPLEXpress
+* Goldilocks (tester only)
+
+The default behavior of the build system is to look for MousePaw Media's
+repositories for each of these, cloned parallel to this repository's main
+folder. Clone (from MousePaw's GitHub or Phabricator source) and then run
+`$ make ready` in each of the following: `libdeps/`, `arctic-tern/`,
+`iosqueak/`, `nimbly/`, `onestring/`, `goldilocks/`, and `simplexpress/`
+(optionally, you can run `$ make eventpp` in `libdeps/`) before building this
+one. (This is our default for company development environments.)
 
 You can specify custom paths for these libraries by creating a `.config` file
 in the root of this repository. Make a copy of `build.config.txt` and save it
@@ -56,8 +67,8 @@ debugging.
 
 ## Source Directories
 
-- The `/docs` folder contains the Sphinx documentation for Ratscript.
-- The `/language` folder contains the source code for the Ratscript
+* The `/docs` folder contains the Sphinx documentation for Ratscript.
+* The `/language` folder contains the source code for the Ratscript
   static library.
-- The `/console` folder contains the console application (REPL), which can also
+* The `/console` folder contains the console application (REPL), which can also
   be used to test the Ratscript static library.
