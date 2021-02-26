@@ -2,7 +2,7 @@
   * Version: 0.1
   *
   * Token class. Used by lexer to separate input into logical units or lexemes
-  * in order to pass on to the parser. 
+  * in order to pass on to the parser.
   *
   * Author(s): Anna R. Dunster
   */
@@ -45,7 +45,7 @@
 /* In each token, we need to store the actual literal content of the token,
  * the type of token it is, and where in the input it was found (for error
  * reporting).  This information should be accessible, but not changeable
- * after initialization. 
+ * after initialization.
  */
 
 #ifndef R_TOKENS_HPP

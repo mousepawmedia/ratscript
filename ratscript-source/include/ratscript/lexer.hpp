@@ -44,10 +44,10 @@
 
 /*
 Lexer needs:
-- A token class that has each token and its attributes (type, lexeme, object, 
+- A token class that has each token and its attributes (type, lexeme, object,
 line location in code)
 - a list of token types (enumeration)
-- a way to discern where lexemes begin and end (recognize single character 
+- a way to discern where lexemes begin and end (recognize single character
     lexemes, then look for multi character, etc)
 - a way to identify lexemes and tokenize them
 - something to do with garbage input

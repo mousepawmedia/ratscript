@@ -1,11 +1,11 @@
 # Top Level Makefile (MousePaw Media Build System)
-# Version: 2.1.0
+# Version: 3.1.0
 # Tailored For: Ratscript
 #
 # Author(s): Jason C. McDonald
 
 # LICENSE
-# Copyright (c) 2018 MousePaw Media.
+# Copyright (c) 2021 MousePaw Media.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -38,6 +38,11 @@
 # See https://www.mousepawmedia.com/developers for information
 # on how to contribute to our projects.
 
+# CHANGE: Project name
+PROJECT = Ratscript
+# CHANGE: Project filename
+NAME = ratscript
+
 MK_DIR = @cmake -E make_directory
 CH_DIR = @cmake -E chdir
 CP = @cmake -E copy
@@ -50,20 +55,22 @@ LN = @cmake -E create_symlink
 none: help
 
 help:
-	$(ECHO) "=== Ratscript 0.1 ==="
+	$(ECHO) "=== $(PROJECT) ==="
 	$(ECHO) "Select a build target:"
-	$(ECHO) "  make ready              Build Ratscript and bundles it for distribution."
-	$(ECHO) "  make clean              Clean up Ratscript."
-	$(ECHO) "  make cleandebug         Clean up Ratscript Debug."
-	$(ECHO) "  make cleanrelease       Clean up Ratscript Release."
-	$(ECHO) "  make docs               Generate HTML docs."
-	$(ECHO) "  make docs_pdf           Generate PDF docs."
-	$(ECHO) "  make ratscript          Build Ratscript as release."
-	$(ECHO) "  make ratscript_debug    Build Ratscript as debug."
-	$(ECHO) "  make console            Build Ratscript console as release."
-	$(ECHO) "  make console_debug      Build Ratscript console as debug."
-	$(ECHO) "  make all                Build everything."
-	$(ECHO) "  make allfresh           Clean and rebuild everything."
+	$(ECHO) "  make ready         Build $(PROJECT) and bundles it for distribution."
+	$(ECHO) "  make clean         Clean up $(PROJECT) and Tester."
+	$(ECHO) "  make cleandebug    Clean up $(PROJECT) and Tester Debug."
+	$(ECHO) "  make cleanrelease  Clean up $(PROJECT) and Tester Release."
+	$(ECHO) "  make docs          Generate HTML docs."
+	$(ECHO) "  make docs_pdf      Generate PDF docs."
+	$(ECHO) "  make $(NAME)       Build $(PROJECT) as release."
+	$(ECHO) "  make $(NAME)_debug Build $(PROJECT) as debug."
+	$(ECHO) "  make tester        Build $(PROJECT) Tester (+$(PROJECT)) as release."
+	$(ECHO) "  make tester_debug  Build $(PROJECT) Tester (+$(PROJECT)) as debug."
+	$(ECHO) "  make console       Build $(PROJECT) console as release."
+	$(ECHO) "  make console_debug Build $(PROJECT) console as debug."
+	$(ECHO) "  make all           Build everything."
+	$(ECHO) "  make allfresh      Clean and rebuild everything."
 	$(ECHO)
 	$(ECHO) "Clang Sanitizers (requires Debug build and Clang.)"
 	$(ECHO) "  SAN=address     Use AddressSanitizer"
@@ -81,29 +88,36 @@ help:
 	$(ECHO) "                  in the root of this repository."
 	$(ECHO) "  When unspecified, default.config will be used."
 	$(ECHO)
-	$(ECHO) "For other build options, see the 'make' command in 'docs/' and 'language/'."
+	$(ECHO) "For other build options, see the 'make' command in 'docs/', '$(NAME)-source/', '$(NAME)-tester/', and 'console/'."
 
 clean:
-	$(MAKE) clean -C language
-	$(MAKE) clean -C console
-	$(RM) rsconsole
-	$(RM) rsconsole_debug
+	$(MAKE) clean -C $(NAME)-source
+	$(MAKE) clean -C $(NAME)-tester
+	$(MAKE) clean -C $(NAME)-console
+	$(RM) tester
+	$(RM) tester_debug
+	$(RM) console
+	$(RM) console_debug
+	$(RM_DIR) $(NAME)
 
 cleanall: clean
 	$(MAKE) clean -C docs
 
 cleandebug:
-	$(MAKE) cleandebug -C language
-	$(MAKE) cleandebug -C console
-	$(RM) rsconsole_debug
+	$(MAKE) cleandebug -C $(NAME)-source
+	$(MAKE) cleandebug -C $(NAME)-tester
+	$(MAKE) cleandebug -C $(NAME)-console
+	$(RM) tester_debug
+	$(RM) console_debug
 
 cleanrelease:
-	$(MAKE) cleanrelease -C language
-	$(MAKE) cleanrelease -C console
-	$(RM) rsconsole
+	$(MAKE) cleanrelease -C $(NAME)-source
+	$(MAKE) cleanrelease -C $(NAME)-tester
+	$(MAKE) cleanrelease -C $(NAME)-console
+	$(RM) tester
+	$(RM) console
 
 docs:
-	$(RM_DIR) docs/build/html
 	$(MAKE) html -C docs
 	$(ECHO) "-------------"
 	$(ECHO) "<<<<<<< FINISHED >>>>>>>"
@@ -114,62 +128,73 @@ docs_pdf:
 	$(MAKE) latexpdf -C docs
 	$(ECHO) "-------------"
 	$(ECHO) "<<<<<<< FINISHED >>>>>>>"
-	$(ECHO) "View docs at 'docs/build/latex/Ratscript.pdf'."
+	$(ECHO) "View docs at 'docs/build/latex/$(PROJECT).pdf'."
 	$(ECHO) "-------------"
 
-ratscript:
-	$(MAKE) release -C language
+$(NAME):
+	$(MAKE) release -C $(NAME)-source
 	$(ECHO) "-------------"
 	$(ECHO) "<<<<<<< FINISHED >>>>>>>"
-	$(ECHO) "Ratscript is in 'language/bin/Release'."
+	$(ECHO) "$(PROJECT) is in '$(NAME)-source/lib/Release'."
 	$(ECHO) "-------------"
 
-ratscript_debug:
-	$(MAKE) debug -C language
+$(NAME)_debug:
+	$(MAKE) debug -C $(NAME)-source
 	$(ECHO) "-------------"
 	$(ECHO) "<<<<<<< FINISHED >>>>>>>"
-	$(ECHO)  on "Ratscript is in 'language/bin/Debug'."
-	$(ECHO) "-------------"
-
-console: ratscript
-	$(MAKE) release -C console
-	$(RM) rsconsole
-	$(LN) console/bin/Release/rsconsole rsconsole
-	$(ECHO) "-------------"
-	$(ECHO) "<<<<<<< FINISHED >>>>>>>"
-	$(ECHO) "Ratscript Console is in 'console/bin/Release'."
-	$(ECHO) "The link './rsconsole' has been created for convenience."
-	$(ECHO) "-------------"
-
-console_debug: ratscript_debug
-	$(MAKE) debug -C console
-	$(RM) rsconsole_debug
-	$(LN) console/bin/Debug/rsconsole rsconsole_debug
-	$(ECHO) "-------------"
-	$(ECHO) "<<<<<<< FINISHED >>>>>>>"
-	$(ECHO) "Ratscript Console is in 'console/bin/Debug'."
-	$(ECHO) "The link './rsconsole_debug' has been created for convenience."
+	$(ECHO) "$(PROJECT) is in '$(NAME)-source/lib/Debug'."
 	$(ECHO) "-------------"
 
 ready: console
-	$(RM_DIR) ratscript
+	$(RM_DIR) $(NAME)
 	$(ECHO) "Creating file structure..."
-	$(MK_DIR) ratscript/lib
-	$(ECHO) "Copying Ratscript language library..."
-	$(CP_DIR) language/include/ ratscript/include/
-	$(CP) language/lib/Release/libratscript.a ratscript/lib/libratscript.a
-	$(ECHO) "Copying Ratscript interactive console..."
-	$(CP) console/bin/Release/rsconsole ratscript/rsconsole
+	$(MK_DIR) $(NAME)/lib
+	$(ECHO) "Copying $(PROJECT) language library..."
+	$(CP_DIR) $(NAME)-source/include/ $(NAME)/include/
+	$(CP) $(NAME)-source/lib/Release/lib$(NAME).a $(NAME)/lib/lib$(NAME).a
+	$(ECHO) "Copying $(PROJECT) interactive console..."
+	$(CP) $(NAME)-console/bin/Release/console $(NAME)/console
 	$(ECHO) "Copying README and LICENSE..."
-	$(CP) README.md ratscript/README.md
-	$(CP) LICENSE.md ratscript/LICENSE.md
+	$(CP) README.md $(NAME)/README.md
+	$(CP) LICENSE.md $(NAME)/LICENSE.md
 	$(ECHO) "-------------"
 	$(ECHO) "<<<<<<< FINISHED >>>>>>>"
-	$(ECHO) "The library is in 'ratscript'."
+	$(ECHO) "The libraries are in '$(NAME)'."
 	$(ECHO) "-------------"
 
-all: docs ratscript
+tester: $(NAME)
+	$(MAKE) release -C $(NAME)-tester
+	$(RM) tester
+	$(LN) $(NAME)-tester/bin/Release/$(NAME)-tester tester
+	$(ECHO) "-------------"
+	$(ECHO) "<<<<<<< FINISHED >>>>>>>"
+	$(ECHO) "$(PROJECT) Tester is in '$(NAME)-tester/bin/Release'."
+	$(ECHO) "The link './tester' has been created for convenience."
+	$(ECHO) "-------------"
+
+
+tester_debug: $(NAME)_debug
+	$(MAKE) debug -C $(NAME)-tester
+	$(RM) tester_debug
+	$(LN) $(NAME)-tester/bin/Debug/$(NAME)-tester tester_debug
+	$(ECHO) "-------------"
+	$(ECHO) "<<<<<<< FINISHED >>>>>>>"
+	$(ECHO) "$(PROJECT) Tester is in '$(NAME)-tester/bin/Debug'."
+	$(ECHO) "The link './tester_debug' has been created for convenience."
+	$(ECHO) "-------------"
+
+console: $(NAME)
+	$(MAKE) release -C $(NAME)-console
+	$(RM) console
+	$(LN) $(NAME)-console/bin/Release/console console
+	$(ECHO) "-------------"
+	$(ECHO) "<<<<<<< FINISHED >>>>>>>"
+	$(ECHO) "$(PROJECT) Console is in '$(NAME)-console/bin/Release'."
+	$(ECHO) "The link './console' has been created for convenience."
+	$(ECHO) "-------------"
+
+all: docs tester console
 
 allfresh: cleanall all
 
-.PHONY: all allfresh clean cleanall cleandebug cleanrelease console console_debug docs docs_pdf ratscript ratscript_debug ready
+.PHONY: all allfresh clean cleanall cleandebug cleanrelease console console_debug docs docs_pdf $(NAME) $(NAME)_debug ready tester tester_debug

@@ -1,11 +1,10 @@
-# CMake Config for Executable (MousePaw Media Build System)
-# Version: 2.1.0
-# Tailored For: Ratscript
+# CMake Build Script (MousePaw Media Build System)
+# Version: 3.1.0
 #
 # Author(s): Jason C. McDonald
 
 # LICENSE
-# Copyright (c) 2018 MousePaw Media.
+# Copyright (c) 2021 MousePaw Media.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -38,16 +37,6 @@
 # See https://www.mousepawmedia.com/developers for information
 # on how to contribute to our projects.
 
-# Specify the verison being used as well as the language.
-cmake_minimum_required(VERSION 3.1)
-
-#Name your project here
-project("Ratscript")
-set(TARGET_NAME "ratscript")
-
-message("Using ${CONFIG_FILENAME}.config")
-include(${CMAKE_HOME_DIRECTORY}/../${CONFIG_FILENAME}.config)
-
 # Compiler and Version check...
 # Allow Clang 3.4
 if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
@@ -76,7 +65,7 @@ endif()
 
 # Target C++17
 set(CMAKE_CXX_STANDARD 17)
-# Disable extensions (turns gnu++17 to c++17)
+# Disable extensions (turns gnu++14 to c++14)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Target 32-bit or 64-bit, based on ARCH variable.
@@ -94,15 +83,10 @@ else()
 endif()
 
 # Our global compiler flags.
-add_definitions(-Wall -Wextra -Werror -pedantic)
+add_definitions(-Wall -Wextra -Werror)
+#add_definitions(-Wall -Wextra)
 
 if(COMPILERTYPE STREQUAL "gcc")
-    # -Wimplicit-fallthrough=0 is required for
-    # GCC 7.x and onward. That is, until we switch
-    # to C++17
-    if(CMAKE_CXX_COMPILER_VERSION VERSION_EQUAL "7" OR CMAKE_CXX_COMPILER_VERSION VERSION_GREATER "7")
-        add_definitions(-Wimplicit-fallthrough=0)
-    endif()
     # Set debug flags. -g is a default.
     #set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} ")
     # Set release flags. -O3 is a default.
@@ -119,65 +103,24 @@ elseif(COMPILERTYPE STREQUAL "clang")
     #set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} ")
 endif()
 
-if(LD)
-    message("Using ${LD} linker...")
-    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fuse-ld=${LD}")
+# CHANGEME: Select appropriate output (lib or bin)
+if(ARTIFACT_TYPE STREQUAL "library")
+    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/../../lib/${CMAKE_BUILD_TYPE}")
+elseif(ARTIFACT_TYPE STREQUAL "executable")
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/../../bin/${CMAKE_BUILD_TYPE}")
 endif()
-
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/../../lib/${CMAKE_BUILD_TYPE}")
 
 include_directories(include)
 
-# CHANGEME: Include headers of dependencies.
-include_directories(${SIMPLEXPRESS_DIR}/include)
-include_directories(${NIMBLY_DIR}/include)
-include_directories(${GOLDILOCKS_DIR}/include)
-include_directories(${ONESTRING_DIR}/include)
-include_directories(${IOSQUEAK_DIR}/include)
-include_directories(${ARCTICTERN_DIR}/include)
-include_directories(${EVENTPP_DIR}/include)
+include_directories(${INCLUDE_LIBS})
 
-# CHANGEME: Include files to compile.
-add_library(${TARGET_NAME} STATIC
-    include/ratscript/lexer.hpp
-    include/ratscript/tokens.hpp
-    include/ratscript/tokentypes.hpp
-    src/lexer.cpp
-    src/tokens.cpp
-    src/tokentypes.cpp
-#     include/ratscript/catalog.hpp
-#     include/ratscript/conditional.hpp
-#     include/ratscript/dev.hpp
-#     include/ratscript/doublylinkedlist.hpp
-#     include/ratscript/error.hpp
-#     include/ratscript/evaluator_postfix.hpp
-#     include/ratscript/math.hpp
-#     include/ratscript/mem.hpp
-#     include/ratscript/parser.hpp
-#     include/ratscript/reserved.hpp
-#     include/ratscript/scope.hpp
-#     include/ratscript/sys.hpp
-#     include/ratscript/utils.hpp
-#     include/ratscript/var.hpp
-#     src/catalog.cpp
-#     src/conditional.cpp
-#     src/dev.cpp
-#     src/error.cpp
-#     src/evaluator_postfix.cpp
-#     src/math.cpp
-#     src/mem.cpp
-#     src/parser.cpp
-#     src/scope.cpp
-#     src/sys.cpp
-#     src/utils.cpp
-#     src/var.cpp
-)
+if(ARTIFACT_TYPE STREQUAL "library")
+    add_library(${TARGET_NAME} ${FILES})
+elseif(ARTIFACT_TYPE STREQUAL "executable")
+    add_executable(${TARGET_NAME} ${FILES})
+endif()
 
-# CHANGEME: Link against dependencies.
-target_link_libraries(${TARGET_NAME} ${SIMPLEXPRESS_DIR}/lib/libsimplexpress.a)
-target_link_libraries(${TARGET_NAME} ${NIMBLY_DIR}/lib/libnimbly.a)
-target_link_libraries(${TARGET_NAME} ${GOLDILOCKS_DIR}/lib/libgoldilocks.a)
-target_link_libraries(${TARGET_NAME} ${IOSQUEAK_DIR}/lib/libiosqueak.a)
+target_link_libraries(${TARGET_NAME} ${LINK_LIBS})
 
 if(COMPILERTYPE STREQUAL "clang")
     if(SAN STREQUAL "address")
@@ -189,13 +132,9 @@ if(COMPILERTYPE STREQUAL "clang")
         set_property(TARGET ${TARGET_NAME} APPEND_STRING PROPERTY LINK_FLAGS " -fsanitize=leak")
         message("Compiling with LeakSanitizer.")
     elseif(SAN STREQUAL "memory")
-        if(LLVM)
-            add_definitions(-O1 -fsanitize=memory -fno-optimize-sibling-calls -fno-omit-frame-pointer -fsanitize-memory-track-origins)
-            set_property(TARGET ${TARGET_NAME} APPEND_STRING PROPERTY LINK_FLAGS " -fsanitize=memory")
-            message("Compiling with MemorySanitizer.")
-        else()
-            message("Skipping MemorySanitizer: requires libc++")
-        endif()
+        add_definitions(-O1 -fsanitize=memory -fno-optimize-sibling-calls -fno-omit-frame-pointer)
+        set_property(TARGET ${TARGET_NAME} APPEND_STRING PROPERTY LINK_FLAGS " -fsanitize=memory")
+        message("Compiling with MemorySanitizer.")
     elseif(SAN STREQUAL "thread")
         add_definitions(-O1 -fsanitize=thread)
         set_property(TARGET ${TARGET_NAME} APPEND_STRING PROPERTY LINK_FLAGS " -fsanitize=thread")
@@ -205,4 +144,6 @@ if(COMPILERTYPE STREQUAL "clang")
         set_property(TARGET ${TARGET_NAME} APPEND_STRING PROPERTY LINK_FLAGS " -fsanitize=undefined")
         message("Compiling with UndefiniedBehaviorSanitizer.")
     endif()
+elseif(NOT SAN MATCHES "")
+    message("${SAN} is not available with compiler ${COMPILERTYPE}.")
 endif()

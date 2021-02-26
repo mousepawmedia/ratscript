@@ -12,7 +12,7 @@
                 "${workspaceRoot}/../goldilocks/goldilocks/include/**",
                 "${workspaceRoot}/../nimbly/nimbly/include/**",
                 "${workspaceRoot}/../simplexpress/simplexpress/include/**",
-                "${workspaceRoot}/language/include/**"
+                "${workspaceRoot}/ratscript-source/include/**"
             ],
             "defines": [],
             "intelliSenseMode": "clang-x64",
@@ -27,7 +27,7 @@
                     "${workspaceRoot}/../goldilocks/goldilocks/include",
                     "${workspaceRoot}/../nimbly/nimbly/include",
                     "${workspaceRoot}/../simplexpress/simplexpress/include",
-                    "${workspaceRoot}/language/include",
+                    "${workspaceRoot}/ratscript-source/include",
                     "${workspaceRoot}"
                 ],
                 "limitSymbolsToIncludedHeaders": true,
@@ -51,7 +51,7 @@
                 "${workspaceRoot}/../goldilocks/goldilocks/include/**",
                 "${workspaceRoot}/../nimbly/nimbly/include/**",
                 "${workspaceRoot}/../simplexpress/simplexpress/include/**",
-                "${workspaceRoot}/language/include/**"
+                "${workspaceRoot}/ratscript-source/include/**"
             ],
             "defines": [],
             "intelliSenseMode": "clang-x64",
@@ -67,7 +67,7 @@
                     "${workspaceRoot}/../goldilocks/goldilocks/include",
                     "${workspaceRoot}/../nimbly/nimbly/include",
                     "${workspaceRoot}/../simplexpress/simplexpress/include",
-                    "${workspaceRoot}/language/include",
+                    "${workspaceRoot}/ratscript-source/include",
                     "${workspaceRoot}"
                 ],
                 "limitSymbolsToIncludedHeaders": true,
@@ -86,7 +86,7 @@
                 "${workspaceRoot}/../goldilocks/goldilocks/include",
                 "${workspaceRoot}/../nimbly/nimbly/include",
                 "${workspaceRoot}/../simplexpress/simplexpress/include",
-                "${workspaceRoot}/language/include"
+                "${workspaceRoot}/ratscript-source/include"
             ],
             "defines": [
                 "_DEBUG",
@@ -103,7 +103,7 @@
                     "${workspaceRoot}/../goldilocks/goldilocks/include",
                     "${workspaceRoot}/../nimbly/nimbly/include",
                     "${workspaceRoot}/../simplexpress/simplexpress/include",
-                    "${workspaceRoot}/language/include",
+                    "${workspaceRoot}/ratscript-source/include",
                     "${workspaceRoot}"
                 ],
                 "limitSymbolsToIncludedHeaders": true,
