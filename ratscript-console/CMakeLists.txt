@@ -12,7 +12,7 @@ message("Using ${CONFIG_FILENAME}.config")
 include(${CMAKE_HOME_DIRECTORY}/../${CONFIG_FILENAME}.config)
 
 # CHANGE: Specify output binary name
-set(TARGET_NAME "console")
+set(TARGET_NAME "ratscript-console")
 
 # SELECT: Project artifact type
 #set(ARTIFACT_TYPE "library")

@@ -1,4 +1,5 @@
 ---
+# Revision: 27 February 2021
 Language: Cpp
 # https://releases.llvm.org/9.0.0/tools/clang/docs/ClangFormatStyleOptions.html
 
@@ -84,7 +85,6 @@ SpaceAfterLogicalNot: false  # DISCUSS
 SpaceAfterTemplateKeyword: false
 SpaceBeforeAssignmentOperators: true
 SpaceBeforeCpp11BracedList: false
-SpaceBeforeParens: ControlStatements
 SpaceBeforeCtorInitializerColon: true
 SpaceBeforeInheritanceColon: true
 SpaceBeforeParens: ControlStatements

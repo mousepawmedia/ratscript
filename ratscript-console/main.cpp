@@ -41,6 +41,7 @@
  * on how to contribute to our projects.
  */
 
+#include <cstring>  // strncmp
 #include <iostream>
 #include <string>
 
@@ -48,6 +49,9 @@
 #include "ratscript/lexer.hpp"
 #include "ratscript/tokens.hpp"
 // #include "simplexpress/simplex.hpp"
+
+#include "goldilocks/shell.hpp"
+#include "iosqueak/channel.hpp"
 
 onestring get_input()
 {
@@ -60,34 +64,68 @@ onestring get_input()
 
 void awesome_test_code_function()
 {
-	std::cout << "The current home of awesome test code" << std::endl;
+	channel << "The current home of awesome test code" << IOCtrl::endl;
 	onestring steve = "stuff";
-	std::cout << steve << std::endl;
+	channel << steve << IOCtrl::endl;
 
 	// Simplex simplex("^d+/");
-	// std::cout << simplex.match("1234") << std::endl;
+	// channel << simplex.match("1234") << IOCtrl::endl;
 	// const char *stuff = "stuff";
 	// TokenType tt = TokenType::RIGHT_BRACE;
 	// Token test_token(stuff, tt, 2, 1);
 
-	// std::cout << test_token.literal() << std::endl;
+	// channel << test_token.literal() << IOCtrl::endl;
 }
 
-// Main function
-
-int main()
+int goldilocks_console(int argc, char* argv[])
 {
-	std::cout << "Welcome to Ratscript v0.1 console, please enter a totally "
+	GoldilocksShell* shell = new GoldilocksShell(">> ");
+	// shell->register_suite<TestSuite_Basic>("X-sB00");
+
+	if (argc > 1) {
+		return shell->command(argc, argv);
+	}
+
+	channel << IOFormatTextAttr::bold << IOFormatTextFG::blue
+			<< "===== Goldilocks Console =====\n"
+			<< IOCtrl::endl;
+
+	// Shift control to the interactive console.
+	shell->interactive();
+
+	// Delete our GoldilocksShell.
+	delete shell;
+	// shell = 0;
+
+	return 0;
+}
+
+int main(int argc, char* argv[])
+{
+	// Set up signal handling.
+	channel.configure_echo(IOEchoMode::cout);
+
+	// If we got command-line arguments.
+	if (argc > 1 && strncmp(argv[1], "-g", 2) == 0) {
+		return goldilocks_console(argc - 1, argv + 1);
+	} else if (argc > 1 && strncmp(argv[1], "--help", 6) == 0) {
+		channel << "RSConsole" << IOCtrl::n
+				<< "-g    Launch Goldilocks Shell or pass all following arguments to it." << IOCtrl::n
+				<< IOCtrl::endl;
+		return 0;
+	}
+
+	channel << "Welcome to Ratscript v0.1 console, please enter a totally "
 				 "random SIMPLEXpress model to get started!"
-			  << std::endl;
+			<< IOCtrl::endl;
 	// onestring model = get_input();
 	// Simplex simplex(model);
-	// std::cout << "Now let's match something against the model..." << std::endl;
+	// channel << "Now let's match something against the model..." << IOCtrl::endl;
 	// onestring input = get_input();
 	// bool match = simplex.match(input);
-	// std::cout << "Your input " << input
+	// channel << "Your input " << input
 	// 		  << (match ? " matches" : " doesn't match") << " the model "
-	// 		  << model << "." << std::endl;
+	// 		  << model << "." << IOCtrl::endl;
 
 	return 0;
 }

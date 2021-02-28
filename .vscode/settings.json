@@ -4,7 +4,7 @@
 
     "c-cpp-flylint.cppcheck.force": false,
     "c-cpp-flylint.cppcheck.includePaths": [
-        "./language/include"
+        "./ratscript-source/include",
     ],
     "c-cpp-flylint.standard": [
         "c11",

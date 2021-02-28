@@ -1,7 +1,5 @@
 # Inner Makefile (MousePaw Media Build System)
-# Version: 3.1.0
-#
-# Author(s): Jason C. McDonald
+# Version: 3.2.0
 
 # LICENSE
 # Copyright (c) 2021 MousePaw Media.
@@ -36,11 +34,6 @@
 # CONTRIBUTING
 # See https://www.mousepawmedia.com/developers for information
 # on how to contribute to our projects.
-
-# CHANGE: Project name
-NAME = "Ratscript (Tester)"
-# CHANGE: Set to 'lib' or 'bin'
-BUILD_DIR = bin
 
 CMAKE = cmake ../.. -G"Unix Makefiles"
 T_DEBUG = -DCMAKE_BUILD_TYPE=Debug

@@ -5,14 +5,14 @@
             "includePath": [
                 "/usr/include/**",
                 "/usr/local/include/**",
-                "${workspaceRoot}/../libdeps/libs/include",
+                "${workspaceRoot}/../libdeps/libs/include/**",
                 "${workspaceRoot}/../arctic-tern/arctic-tern/include/**",
-                "${workspaceRoot}/../iosqueak/iosqueak/include/**",
-                "${workspaceRoot}/../onestring/onestring/include/**",
                 "${workspaceRoot}/../goldilocks/goldilocks/include/**",
+                "${workspaceRoot}/../iosqueak/iosqueak/include/**",
                 "${workspaceRoot}/../nimbly/nimbly/include/**",
+                "${workspaceRoot}/../onestring/onestring/include/**",
                 "${workspaceRoot}/../simplexpress/simplexpress/include/**",
-                "${workspaceRoot}/ratscript-source/include/**"
+                "${workspaceRoot}/**"
             ],
             "defines": [],
             "intelliSenseMode": "clang-x64",
@@ -22,12 +22,11 @@
                     "/usr/local/include",
                     "${workspaceRoot}/../libdeps/libs/include",
                     "${workspaceRoot}/../arctic-tern/arctic-tern/include",
-                    "${workspaceRoot}/../iosqueak/iosqueak/include",
-                    "${workspaceRoot}/../onestring/onestring/include",
                     "${workspaceRoot}/../goldilocks/goldilocks/include",
+                    "${workspaceRoot}/../iosqueak/iosqueak/include",
                     "${workspaceRoot}/../nimbly/nimbly/include",
+                    "${workspaceRoot}/../onestring/onestring/include",
                     "${workspaceRoot}/../simplexpress/simplexpress/include",
-                    "${workspaceRoot}/ratscript-source/include",
                     "${workspaceRoot}"
                 ],
                 "limitSymbolsToIncludedHeaders": true,
@@ -36,57 +35,61 @@
             "macFrameworkPath": [
                 "/System/Library/Frameworks",
                 "/Library/Frameworks"
-            ]
+            ],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c11",
+            "cppStandard": "c++17"
         },
         {
             "name": "Linux",
             "includePath": [
                 "/usr/include/**",
-                "/usr/lib/gcc/x86_64-linux-gnu/**",
                 "/usr/local/include/**",
-                "${workspaceRoot}/../libdeps/libs/include",
+                "/usr/lib/gcc/x86_64-linux-gnu/**",
+                "${workspaceRoot}/../libdeps/libs/include/**",
                 "${workspaceRoot}/../arctic-tern/arctic-tern/include/**",
-                "${workspaceRoot}/../iosqueak/iosqueak/include/**",
-                "${workspaceRoot}/../onestring/onestring/include/**",
                 "${workspaceRoot}/../goldilocks/goldilocks/include/**",
+                "${workspaceRoot}/../iosqueak/iosqueak/include/**",
                 "${workspaceRoot}/../nimbly/nimbly/include/**",
+                "${workspaceRoot}/../onestring/onestring/include/**",
                 "${workspaceRoot}/../simplexpress/simplexpress/include/**",
-                "${workspaceRoot}/ratscript-source/include/**"
+                "${workspaceRoot}/**"
             ],
             "defines": [],
             "intelliSenseMode": "clang-x64",
             "browse": {
                 "path": [
                     "/usr/include",
-                    "/usr/lib/gcc/x86_64-linux-gnu",
                     "/usr/local/include",
+                    "/usr/include/x86_64-linux-gnu",
                     "${workspaceRoot}/../libdeps/libs/include",
                     "${workspaceRoot}/../arctic-tern/arctic-tern/include",
-                    "${workspaceRoot}/../iosqueak/iosqueak/include",
-                    "${workspaceRoot}/../onestring/onestring/include",
                     "${workspaceRoot}/../goldilocks/goldilocks/include",
+                    "${workspaceRoot}/../iosqueak/iosqueak/include",
                     "${workspaceRoot}/../nimbly/nimbly/include",
+                    "${workspaceRoot}/../onestring/onestring/include",
                     "${workspaceRoot}/../simplexpress/simplexpress/include",
-                    "${workspaceRoot}/ratscript-source/include",
                     "${workspaceRoot}"
                 ],
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""
-            }
+            },
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c11",
+            "cppStandard": "c++17"
         },
         {
             "name": "Win32",
             "includePath": [
                 "C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/include",
-                "${workspaceRoot}",
-                "${workspaceRoot}/../libdeps/libs/include",
-                "${workspaceRoot}/../arctic-tern/arctic-tern/include",
-                "${workspaceRoot}/../iosqueak/iosqueak/include",
-                "${workspaceRoot}/../onestring/onestring/include",
-                "${workspaceRoot}/../goldilocks/goldilocks/include",
-                "${workspaceRoot}/../nimbly/nimbly/include",
-                "${workspaceRoot}/../simplexpress/simplexpress/include",
-                "${workspaceRoot}/ratscript-source/include"
+                "${workspaceRoot}/../libdeps/libs/include/**",
+                "${workspaceRoot}/../arctic-tern/arctic-tern/include/**",
+                "${workspaceRoot}/../goldilocks/goldilocks/include/**",
+                "${workspaceRoot}/../iosqueak/iosqueak/include/**",
+                "${workspaceRoot}/../nimbly/nimbly/include/**",
+                "${workspaceRoot}/../onestring/onestring/include/**",
+                "${workspaceRoot}/../simplexpress/simplexpress/include/**",
+                "${workspaceRoot}/**"
             ],
             "defines": [
                 "_DEBUG",
@@ -98,17 +101,19 @@
                     "C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/include/*",
                     "${workspaceRoot}/../libdeps/libs/include",
                     "${workspaceRoot}/../arctic-tern/arctic-tern/include",
-                    "${workspaceRoot}/../iosqueak/iosqueak/include",
-                    "${workspaceRoot}/../onestring/onestring/include",
                     "${workspaceRoot}/../goldilocks/goldilocks/include",
+                    "${workspaceRoot}/../iosqueak/iosqueak/include",
                     "${workspaceRoot}/../nimbly/nimbly/include",
+                    "${workspaceRoot}/../onestring/onestring/include",
                     "${workspaceRoot}/../simplexpress/simplexpress/include",
-                    "${workspaceRoot}/ratscript-source/include",
                     "${workspaceRoot}"
                 ],
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""
-            }
+            },
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c11",
+            "cppStandard": "c++17"
         }
     ],
     "version": 4

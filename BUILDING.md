@@ -53,8 +53,8 @@ favorite web browser.
 ## Building Tester
 
 If you want to test out Ratscript directly, run `make console`. Then, look for
-the `rsconsole` executable in `console/bin/[Debug/Release]`. Alternatively, you
-may use the symbolic link `rsconsole` or `rsconsole_debug` in the root of this
+the `console` executable in `console/bin/[Debug/Release]`. Alternatively, you
+may use the symbolic link `console` or `console_debug` in the root of this
 repository.
 
 ## IDE Support
