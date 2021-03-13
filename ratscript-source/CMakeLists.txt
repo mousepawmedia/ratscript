@@ -34,11 +34,15 @@ set(INCLUDE_LIBS
 # CHANGE: Include files to compile.
 set(FILES
     include/ratscript/lexer.hpp
+    include/ratscript/ratscript.hpp
     include/ratscript/tokens.hpp
-    include/ratscript/tokentypes.hpp
+    include/ratscript/token_types.hpp
+    include/ratscript/tests/lexer_test.hpp
     src/lexer.cpp
+    src/ratscript.cpp
     src/tokens.cpp
-    src/tokentypes.cpp
+    src/token_types.cpp
+    src/tests/lexer_test.cpp
 #     include/ratscript/catalog.hpp
 #     include/ratscript/conditional.hpp
 #     include/ratscript/dev.hpp

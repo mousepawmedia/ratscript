@@ -1,14 +1,14 @@
 /** Lexer [Ratscript]
-  * Version: 0.1
-  *
-  * Lexes input strings, splitting them into their appropriate parts and sending
-  * them on to the parser.
-  *
-  * Author(s): Michael Parkman, Jason C. McDonald, Anna R. Dunster
-  */
+ * Version: 0.1
+ *
+ * Lexes input strings, splitting them into their appropriate parts and sending
+ * them on to the parser.
+ *
+ * Author(s): Anna R. Dunster, Jason C. McDonald, Michael Parkman
+ */
 
 /* LICENSE
- * Copyright (c) 2020 MousePaw Media.
+ * Copyright (c) 2020-2021 MousePaw Media.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -42,29 +42,87 @@
  * on how to contribute to our projects.
  */
 
-/*
-Lexer needs:
-- A token class that has each token and its attributes (type, lexeme, object,
-line location in code)
-- a list of token types (enumeration)
-- a way to discern where lexemes begin and end (recognize single character
-    lexemes, then look for multi character, etc)
-- a way to identify lexemes and tokenize them
-- something to do with garbage input
-
-Use SIMPLExpress
-
-*/
-
 #ifndef R_LEXER_HPP
 #define R_LEXER_HPP
 
 #include <iostream>
 
-void something(const std::string &user_input)
-{
-	// Just testing that the console is properly calling this file.
-	std::cout << "Your input is: " << user_input << std::endl;
-}
+#include "nimbly/flexarray.hpp"
+#include "onestring/onestring.hpp"
+#include "simplexpress/simplex.hpp"
 
-#endif
+#include "ratscript/token_types.hpp"
+#include "ratscript/tokens.hpp"
+
+class Lexer
+{
+private:
+	/** Stored source code before lexing */
+	onestring source;
+
+	/** Keep track of position in source code, for Token generation and other
+	 * things. */
+	uint_fast32_t start;
+	uint_fast32_t current;
+	uint_fast32_t line;
+	uint_fast32_t last_line_pos;
+
+public:
+	/** Array of Tokens, the output of the lexer creation */
+	FlexArray<Token> tokens;
+
+	/** Constructs the Lexer object and lexes the source code into an array of
+	 * tokens.
+	 * \param: source code to lex */
+	explicit Lexer(onestring source);
+
+private:
+	/** Lexer loop, runs in constructor */
+	void lex_tokens();
+
+	/** Identifies and stores the current token. */
+	void lex_token();
+
+	/** Add a token with the current information
+	 * \param: TokenType enum */
+	void add_token(TokenType type);
+
+	/** Add token with specified lexeme value
+	 * \param: TokenType enum
+	 * \param: onestring lexeme */
+	void add_token(TokenType type, onestring lexeme);
+
+	/** Used by lexer to obtain the next character. */
+	onechar advance();
+
+	/** Check for end of input source */
+	bool at_end();
+
+	/** Parse and ignore comments
+	 * \param: initial character being parsed */
+	void comment(onechar &character);
+
+	/** Tokenize identifiers */
+	void identifier();
+
+	/** Check whether the next character matches an input. Advances if true.
+	 * \param: the character to check against */
+	bool match_next(onechar expected);
+
+	/** Advances line and line position variables when needed */
+	void newline();
+
+	/** Tokenize numerical content */
+	void number();
+
+	/** Returns the next character without advancing the model. */
+	onechar peek();
+
+	/** Returns the character after next without advancing the model. */
+	onechar peek_next();
+
+	/** Tokenize strings. */
+	void string(onechar &character);
+};
+
+#endif  // !R_LEXER_HPP

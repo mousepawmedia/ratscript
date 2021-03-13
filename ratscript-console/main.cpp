@@ -3,11 +3,11 @@
  *
  * The interactive console for Ratscript.
  *
- * Author(s): Michael Parkman, Jason C. McDonald, Anna R. Dunster
+ * Author(s): Anna R. Dunster, Jason C. McDonald, Michael Parkman
  */
 
 /* LICENSE
- * Copyright (c) 2020 MousePaw Media.
+ * Copyright (c) 2020-2021 MousePaw Media.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -45,42 +45,25 @@
 #include <iostream>
 #include <string>
 
-#include "onestring/onestring.hpp"
-#include "ratscript/lexer.hpp"
-#include "ratscript/tokens.hpp"
-// #include "simplexpress/simplex.hpp"
-
 #include "goldilocks/shell.hpp"
 #include "iosqueak/channel.hpp"
 
-onestring get_input()
-{
-	std::string console_input;
-
-	getline(std::cin, console_input);
-	something(console_input);
-	return console_input;
-}
+#include "ratscript/ratscript.hpp"
+#include "ratscript/tests/lexer_test.hpp"
 
 void awesome_test_code_function()
 {
-	channel << "The current home of awesome test code" << IOCtrl::endl;
-	onestring steve = "stuff";
-	channel << steve << IOCtrl::endl;
+	channel << "The current home of awesome test code!" << IOCtrl::endl;
 
-	// Simplex simplex("^d+/");
-	// channel << simplex.match("1234") << IOCtrl::endl;
-	// const char *stuff = "stuff";
-	// TokenType tt = TokenType::RIGHT_BRACE;
-	// Token test_token(stuff, tt, 2, 1);
+	// Insert awesome test code here. No crappy test code allowed D:<
 
-	// channel << test_token.literal() << IOCtrl::endl;
+	// ... okay, okay, we'll allow it if you need to <3
 }
 
 int goldilocks_console(int argc, char* argv[])
 {
 	GoldilocksShell* shell = new GoldilocksShell(">> ");
-	// shell->register_suite<TestSuite_Basic>("X-sB00");
+	shell->register_suite<TestSuite_Lexer>("R-sB00");
 
 	if (argc > 1) {
 		return shell->command(argc, argv);
@@ -96,7 +79,6 @@ int goldilocks_console(int argc, char* argv[])
 	// Delete our GoldilocksShell.
 	delete shell;
 	// shell = 0;
-
 	return 0;
 }
 
@@ -109,23 +91,31 @@ int main(int argc, char* argv[])
 	if (argc > 1 && strncmp(argv[1], "-g", 2) == 0) {
 		return goldilocks_console(argc - 1, argv + 1);
 	} else if (argc > 1 && strncmp(argv[1], "--help", 6) == 0) {
-		channel << "RSConsole" << IOCtrl::n
-				<< "-g    Launch Goldilocks Shell or pass all following arguments to it." << IOCtrl::n
-				<< IOCtrl::endl;
+		channel << "===== Ratscript Console =====" << IOCtrl::n << IOCtrl::n
+				<< "Use a filename as an argument to run the interpreter on an "
+				   "input file."
+				<< IOCtrl::n << IOCtrl::n
+				<< "Other available arguments:" << IOCtrl::n
+				<< "-g    Launch Goldilocks Shell or pass all following "
+				   "arguments to it."
+				<< IOCtrl::n << IOCtrl::endl;
 		return 0;
+	} else if (argc > 2) {
+		// If we got multiple arguments without matching known flags
+		channel << "Input error." << IOCtrl::n
+				<< "Execute a file with: 'console [filename]' or type 'console "
+				   "--help' for more options."
+				<< IOCtrl::endl;
+		return 64;
+	} else if (argc == 2) {
+		Ratscript rs;
+		return rs.run_file(argv[1]);
+	} else {
+		// awesome_test_code_function();
+		// TODO: add control for IOCat/IOVrb verbosity
+		Ratscript rs;
+		return rs.run_prompt();
 	}
-
-	channel << "Welcome to Ratscript v0.1 console, please enter a totally "
-				 "random SIMPLEXpress model to get started!"
-			<< IOCtrl::endl;
-	// onestring model = get_input();
-	// Simplex simplex(model);
-	// channel << "Now let's match something against the model..." << IOCtrl::endl;
-	// onestring input = get_input();
-	// bool match = simplex.match(input);
-	// channel << "Your input " << input
-	// 		  << (match ? " matches" : " doesn't match") << " the model "
-	// 		  << model << "." << IOCtrl::endl;
 
 	return 0;
 }

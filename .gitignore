@@ -6,8 +6,8 @@
 /ratscript/
 
 # Tester symlinks
-tester
-tester_debug
+console
+console_debug
 
 # Documentation build
 /docs/_build/
