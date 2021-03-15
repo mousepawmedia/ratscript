@@ -107,7 +107,7 @@ void Lexer::lex_token()
 			// Handle identifiers including keywords
 			identifier();
 		} else {
-			// TODO: Throw error once errors functional
+			// TODO (T1466): Throw error once errors functional
 			channel
 				<< "Unexpected character. Type 'exit' without quotes to exit."
 				<< IOCtrl::endl;
@@ -261,8 +261,8 @@ onechar Lexer::peek_next()
 void Lexer::string(onechar& character)
 {
 	int newline_count = 0;
-	// TODO: This needs adjustment, does not currently handle escaped quotes in
-	// string.
+	// TODO (T1469): This needs adjustment, does not currently handle escaped
+	// quotes in string.
 	while (peek() != '"' && !at_end()) {
 		character = advance();
 		if (Model::newline.match(character)) {
@@ -274,7 +274,7 @@ void Lexer::string(onechar& character)
 		}
 	}
 
-	// TODO: Add unterminated string (no closing quote) error here once
+	// TODO (T1466): Add unterminated string (no closing quote) error here once
 	// errors functional. For now, just create end of file token.
 	if (at_end()) {
 		// Calculate final character position in the line.

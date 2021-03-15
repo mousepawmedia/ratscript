@@ -112,7 +112,7 @@ int main(int argc, char* argv[])
 		return rs.run_file(argv[1]);
 	} else {
 		// awesome_test_code_function();
-		// TODO: add control for IOCat/IOVrb verbosity
+		// TODO (T1467): add control for IOCat/IOVrb verbosity
 		Ratscript rs;
 		return rs.run_prompt();
 	}

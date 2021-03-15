@@ -86,6 +86,7 @@ public:
 	bool operator!=(const Token& other) const;
 };
 
-// TODO: How to store templatized content such as a number, identifier, string?
+// TODO (T1468): How to store templatized content such as a number, identifier,
+// string?
 
 #endif
