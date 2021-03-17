@@ -53,13 +53,6 @@
 #include "ratscript/lexer.hpp"
 #include "ratscript/tokens.hpp"
 
-// Console - or something - needs a "run line" interactive function, and a "run
-// file" function - maybe both not in console but console just calls the "run
-// line" interactive function
-
-// Short term: "run" function that takes input of either type and throws it in a
-// lexer and prints the stringified results
-
 class Ratscript
 {
 public:
