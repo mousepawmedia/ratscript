@@ -193,7 +193,7 @@ $(EXE_NICKNAME)_debug: $(LIB_NAME)_debug
 	$(ECHO) "The link './$(EXE_NICKNAME)_debug' has been created for convenience."
 	$(ECHO) "-------------"
 
-all: docs tester
+all: docs $(EXE_NICKNAME)
 
 allfresh: cleanall all
 

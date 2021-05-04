@@ -1,14 +1,14 @@
-/** Tokens [Ratscript]
+/** Ratscript Core [Ratscript]
  * Version: 0.1
  *
- * Token class. Used by lexer to separate input into logical units or lexemes
- * in order to pass on to the parser.
+ * Core commands to handle input and passing processed information from one part
+ * of the system to another.
  *
  * Author(s): Anna R. Dunster
  */
 
 /* LICENSE
- * Copyright (c) 2020 MousePaw Media.
+ * Copyright (c) 2021 MousePaw Media.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -42,51 +42,36 @@
  * on how to contribute to our projects.
  */
 
-/* In each token, we need to store the lexeme of the token (the actual literal
- * source that produced it), the the type of token it is, and where in the input
- * it was found (for error reporting).  This information should be accessible,
- * but not changeable after initialization.
- */
+#ifndef R_RATSCRIPT_HPP
+#define R_RATSCRIPT_HPP
 
-#ifndef R_TOKENS_HPP
-#define R_TOKENS_HPP
+#include <string>
 
-#include <iostream>
-
+#include "iosqueak/channel.hpp"
 #include "onestring/onestring.hpp"
 
-#include "ratscript/token_types.hpp"
+#include "ratscript/lexer.hpp"
+#include "ratscript/tokens.hpp"
 
-class Token
+class Ratscript
 {
 public:
-	TokenType token_type;
-	onestring lexeme;
-	uint_fast32_t line;
-	uint_fast32_t line_position;
+	bool had_error;
 
-	Token(){};
+	Ratscript();
 
-	/** Token constructor
-	 * \param: token_type from TokenType enum
-	 * \param: literal onestring of source code
-	 * \param: line number where token originates
-	 * \param: position number in line */
-	Token(TokenType token_type,
-		  onestring lexeme,
-		  uint_fast32_t line,
-		  uint_fast32_t line_position);
+	onestring get_input();
 
-	/** Convert to string for testing */
-	onestring to_string() const;
-	friend std::ostream& operator<<(std::ostream& stream, const Token& token);
+	/** Run the input script
+	 * \param: source code */
+	void run(onestring source);
 
-	/** Comparison overloads */
-	bool operator==(const Token& other) const;
-	bool operator!=(const Token& other) const;
+	/** Passes a script file to run
+	 * \param: file path */
+	int run_file(std::string path);
+
+	/** Interactive prompt to run */
+	int run_prompt();
 };
 
-// TODO (T1468): How to store templatized content such as a number, identifier,
-// string?
-
-#endif
+#endif  // !R_RATSCRIPT_HPP

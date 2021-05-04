@@ -1,10 +1,10 @@
 /** TokenTypes [Ratscript]
-  * Version: 0.1
-  *
-  * Enum class for the possible types of Token that may be designated.
-  *
-  * Author(s): Anna R. Dunster
-  */
+ * Version: 0.1
+ *
+ * Enum class for the possible types of Token that may be designated.
+ *
+ * Author(s): Anna R. Dunster
+ */
 
 /* LICENSE
  * Copyright (c) 2020 MousePaw Media.
@@ -46,13 +46,16 @@
 #ifndef R_TOKENTYPES_HPP
 #define R_TOKENTYPES_HPP
 
-enum class TokenType
-{
+#include <iostream>
+#include <unordered_map>
+
+enum class TokenType {
 	// Single Character tokens.
 	LEFT_PAREN,
 	RIGHT_PAREN,
 	LEFT_BRACE,
 	RIGHT_BRACE,
+	COLON,
 	COMMA,
 	DOT,
 	MINUS,
@@ -77,22 +80,43 @@ enum class TokenType
 	NUMBER,
 
 	// Keywords.
+	ASSERT,
 	AND,
+	BREAK,
+	CASE,
 	CLASS,
+	CONTINUE,
+	DEFINE,
+	ELIF,
 	ELSE,
+	END,
+	FALL,
 	FALSE,
-	FUN,
+	FINALLY,
 	FOR,
 	IF,
+	LET,
+	MAKE,
 	NIL,
 	OR,
+	PANIC,
+	PASS,
 	PRINT,
 	RETURN,
 	SUPER,
+	SWITCH,
+	TEST,
 	THIS,
 	TRUE,
-	VAR,
-	WHILE
+	UNTIL,
+	WARN,
+	WHILE,
+
+	ENDOFFILE
 };
+
+extern std::unordered_map<std::string, TokenType> keyword_string_to_type;
+
+std::ostream& operator<<(std::ostream& stream, const TokenType& type);
 
 #endif

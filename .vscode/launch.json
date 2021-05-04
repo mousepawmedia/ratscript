@@ -10,6 +10,8 @@
             "name": "LLDB",
             "program": "${workspaceFolder}/console_debug",
             "args": [],
+            // "args": ["-g", "--runall"],
+            // "args": ["-g", "--run", "R-tB0007"],
             "cwd": "${workspaceFolder}",
             "preLaunchTask": "Build Debug",
             "terminal": "integrated"
