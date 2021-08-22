@@ -6,7 +6,7 @@ currently in development. See the [official project page][1].
 
 ## Authors
 
-- Anna Dunster
+- Anna R. Dunster
 - Nate Groggett
 - Jason C. McDonald
 - Michael Parkman
